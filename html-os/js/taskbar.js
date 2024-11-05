@@ -16,12 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
     startMenu.style.display = "none";
     document.body.appendChild(startMenu);
 
+    // toggles the start menu visibility
     startButton.addEventListener("click", function () {
-        // toggles the start menu visibility
         startMenu.style.display = startMenu.style.display === "none" ? "block" : "none";
         startMenu.style.position = "absolute";
         startMenu.style.bottom = "40px";
         startMenu.style.left = "5px";
+
+        // remove focus from the button after toggling the menu
+        if (startMenu.style.display === "none") {
+            startButton.blur();
+        }
     });
 
     // close the start menu when clicking outside of it
