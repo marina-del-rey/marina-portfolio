@@ -62,7 +62,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  width: 200px;
+  width: 230px;
   position: relative;
 }
 
@@ -83,7 +83,7 @@
 }
 
 #start-menu li {
-  padding: 8px 20px;
+  padding: 10px 14px;
   cursor: pointer;
   font-size: 14px;
   color: #263238;
@@ -91,9 +91,6 @@
   align-items: center;
   font-size: 20px;
   height: 30px;
-}
-
-#start-menu li:before {
 }
 
 #start-menu li:nth-last-child(2) {
@@ -119,6 +116,13 @@
 
 .highlight {
   text-decoration: underline;
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 12px;
+  vertical-align: middle;
 }
 
 /* Taskbar apps styles */

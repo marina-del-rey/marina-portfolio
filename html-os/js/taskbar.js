@@ -10,13 +10,34 @@ document.addEventListener("DOMContentLoaded", function () {
     startMenu.id = "start-menu";
     startMenu.innerHTML = `
         <ul>
-            <li><span class="highlight">P</span>rograms</li>
-            <li><span class="highlight">D</span>ocuments</li>
-            <li><span class="highlight">S</span>ettings</li>
-            <li><span class="highlight">F</span>ind</li>
-            <li><span class="highlight">H</span>elp</li>
-            <li><span class="highlight">R</span>un...</li>
-            <li>Sh<span class="highlight">u</span>t Down...</li>
+            <li class="menu-item programs">
+                <img src="./assets/icons/programs.ico" alt="Programs Icon" class="icon">
+                <span class="highlight">P</span>rograms
+            </li>
+            <li class="menu-item documents">
+                <img src="./assets/icons/documents.ico" alt="Documents Icon" class="icon">
+                <span class="highlight">D</span>ocuments
+            </li>
+            <li class="menu-item settings">
+                <img src="./assets/icons/settings.ico" alt="Settings Icon" class="icon settings">
+                <span class="highlight">S</span>ettings
+            </li>
+            <li class="menu-item find">
+                <img src="./assets/icons/find.ico" alt="Find Icon" class="icon">
+                <span class="highlight">F</span>ind
+            </li>
+            <li class="menu-item help">
+                <img src="./assets/icons/help.ico" alt="Help Icon" class="icon">
+                <span class="highlight">H</span>elp
+            </li>
+            <li class="menu-item run">
+                <img src="./assets/icons/run.ico" alt="Run Icon" class="icon">
+                <span class="highlight">R</span>un...
+            </li>
+            <li class="menu-item shutdown">
+                <img src="./assets/icons/shut-down.ico" alt="Shutdown Icon" class="icon">
+                Sh<span class="highlight">u</span>t Down...
+            </li>
         </ul>
     `;
     startMenuContainer.appendChild(startMenu);
