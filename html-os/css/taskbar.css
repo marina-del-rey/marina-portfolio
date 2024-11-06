@@ -43,30 +43,82 @@
 }
 
 /* Start menu styles */
-#start-menu {
-  width: 160px;
-  background-color: #c0c0c0;
-  border: 1px solid #808080;
-  padding: 5px;
-  font-family: "Tahoma", sans-serif;
-  color: black;
-  list-style: none;
-  box-shadow: 2px 2px 0 #fff, -1px -1px 0 #000;
+#start-menu-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  bottom: 40px;
+  left: 5px;
+  background: #cac6cb;
+  position: absolute;
+  z-index: 20;
+  padding: 4px;
+  box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #fcfcfc,
+    inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #dedcde;
 }
 
+#start-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 200px;
+  position: relative;
+}
+
+#start-menu::before {
+  content: "";
+  display: block;
+  background-color: #8e9699;
+  width: 32px;
+  height: 100%;
+  position: absolute;
+}
+
+/* Menu items */
 #start-menu ul {
   padding: 0;
   margin: 0;
+  margin-left: 31px;
 }
 
 #start-menu li {
-  padding: 8px;
+  padding: 8px 20px;
   cursor: pointer;
-  border-bottom: 1px solid #a0a0a0;
+  font-size: 14px;
+  color: #263238;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  height: 30px;
+}
+
+#start-menu li:before {
+}
+
+#start-menu li:nth-last-child(2) {
+  border-bottom: 1.5px solid #a099a1;
+}
+
+#start-menu li:last-child {
+  border-top: 1.5px solid #fcfcfc;
 }
 
 #start-menu li:hover {
-  background-color: #a0a0a0;
+  background-color: #577783;
+  color: white;
+}
+
+#start-menu li:hover .highlight {
+  color: white;
+}
+
+#start-menu li:last-child {
+  border-bottom: none;
+}
+
+.highlight {
+  text-decoration: underline;
 }
 
 /* Taskbar apps styles */
@@ -89,5 +141,5 @@
 
 #clock {
   font-size: 16px;
-  color: black;
+  color: #263238;
 }

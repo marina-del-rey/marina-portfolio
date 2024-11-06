@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!notepadTask) {
             notepadTask = document.createElement("button");
             notepadTask.id = "notepad-task";
-            notepadTask.className = "taskbar-icon";
+            notepadTask.className = "taskbar-app-tab";
             notepadTask.innerText = "Notepad";
             taskbarApps.appendChild(notepadTask);
 

@@ -1,38 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
     const startButton = document.getElementById("start-button");
+
+    // create the start menu container
+    const startMenuContainer = document.createElement("div");
+    startMenuContainer.id = "start-menu-container";
+    startMenuContainer.style.display = "none";
+
     const startMenu = document.createElement("div");
     startMenu.id = "start-menu";
     startMenu.innerHTML = `
         <ul>
-            <li>Programs</li>
-            <li>Documents</li>
-            <li>Settings</li>
-            <li>Find</li>
-            <li>Help</li>
-            <li>Run...</li>
-            <li>Shut Down...</li>
+            <li><span class="highlight">P</span>rograms</li>
+            <li><span class="highlight">D</span>ocuments</li>
+            <li><span class="highlight">S</span>ettings</li>
+            <li><span class="highlight">F</span>ind</li>
+            <li><span class="highlight">H</span>elp</li>
+            <li><span class="highlight">R</span>un...</li>
+            <li>Sh<span class="highlight">u</span>t Down...</li>
         </ul>
     `;
-    startMenu.style.display = "none";
-    document.body.appendChild(startMenu);
+    startMenuContainer.appendChild(startMenu);
+    document.body.appendChild(startMenuContainer);
 
-    // toggles the start menu visibility
+    // toggle the start menu visibility
     startButton.addEventListener("click", function () {
-        startMenu.style.display = startMenu.style.display === "none" ? "block" : "none";
-        startMenu.style.position = "absolute";
-        startMenu.style.bottom = "40px";
-        startMenu.style.left = "5px";
+        startMenuContainer.style.display = startMenuContainer.style.display === "none" ? "block" : "none";
 
         // remove focus from the button after toggling the menu
-        if (startMenu.style.display === "none") {
+        if (startMenuContainer.style.display === "none") {
             startButton.blur();
         }
     });
 
     // close the start menu when clicking outside of it
     document.addEventListener("click", function (event) {
-        if (!startButton.contains(event.target) && !startMenu.contains(event.target)) {
-            startMenu.style.display = "none";
+        if (!startButton.contains(event.target) && !startMenuContainer.contains(event.target)) {
+            startMenuContainer.style.display = "none";
         }
     });
 
