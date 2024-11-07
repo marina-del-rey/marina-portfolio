@@ -1,9 +1,105 @@
 <div class="window" id="notepad-window">
-    <div class="title-bar">
-        <span>Notepad</span>
-        <button class="close-button">X</button>
-    </div>
-    <div class="window-content">
-        <textarea id="notepad-textarea" placeholder="Type here..."></textarea>
+    <div class="window-inside">
+        <div class="window-nav">
+            <h3 class="window-label">
+                <span>Untitled - Notepad</span>
+            </h3>
+            <div class="buttons">
+                <button class="window-button minimize"></button>
+                <button class="window-button maximize"></button>
+                <button class="window-button close-button">X</button>
+            </div>
+        </div>
+        <div class="window-menu">
+            <ul class="menu-bar">
+                <li class="menu-item">
+                    <span class="highlight">F</span>ile
+                    <ul class="dropdown">
+                        <li>
+                            <span class="highlight">N</span>ew
+                        </li>
+                        <li>
+                            <span class="highlight">O</span>pen...
+                        </li>
+                        <li>
+                            <span class="highlight">S</span>ave
+                        </li>
+                        <li>
+                            <span class="highlight">S</span>ave
+                            <span class="highlight">A</span>s
+                        </li>
+                        <hr>
+                        <li>
+                            <span class="highlight">P</span>age
+                            Se<span class="highlight">t</span>up
+                        </li>
+                        <li>
+                            <span class="highlight">P</span>rint
+                        </li>
+                        <li>
+                            <span class="highlight">Ex</span>it
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <span class="highlight">E</span>dit
+                    <ul class="dropdown">
+                        <li>
+                            <span class="highlight">U</span>ndo
+                        </li>
+                        <hr>
+                        <li>
+                            <span class="highlight">C</span>u<span class="highlight">t</span>
+                        </li>
+                        <li>
+                            <span class="highlight">C</span>opy
+                        </li>
+                        <li>
+                            <span class="highlight">P</span>aste
+                        </li>
+                        <li>
+                            <span class="highlight">D</span>e<span class="highlight">l</span>ete
+                        </li>
+                        <hr>
+                        <li>
+                            <span class="highlight">S</span>elect <span class="highlight">A</span>ll
+                        </li>
+                        <li>
+                            <span class="highlight">T</span>ime/<span class="highlight">D</span>ate
+                        </li>
+                        <hr>
+                        <li>
+                            <span class="highlight">W</span>ord Wrap
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <span class="highlight">S</span>earch
+                    <ul class="dropdown">
+                        <li>
+                            <span class="highlight">F</span>ind...
+                        </li>
+                        <li>
+                            <span class="highlight">F</span>ind <span class="highlight">N</span>ext
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <span class="highlight">H</span>elp
+                    <ul class="dropdown">
+                        <li>
+                            <span class="highlight">H</span>elp Topics
+                        </li>
+                        <hr>
+                        <li>
+                            <span class="highlight">A</span>bout Notepad
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="window-content">
+            <textarea spellcheck="false"></textarea>
+        </div>
     </div>
 </div>

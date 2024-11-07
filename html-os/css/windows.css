@@ -1,0 +1,224 @@
+.window {
+  position: absolute;
+  background: #cac6cb;
+  padding: 6px;
+  box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #dedcde,
+    inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #fcfcfc;
+}
+
+.window-inside {
+  max-width: calc(100vw - 36px);
+  max-height: calc(100vh - 44px - 12px);
+  min-width: 300px;
+  min-height: 200px;
+  overflow: hidden;
+  resize: both;
+}
+
+.window-nav {
+  background-color: #577783;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 28px;
+  padding: 0 3px;
+  color: white;
+  touch-action: none;
+  line-height: 35px;
+}
+
+.window-nav h3 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: calc(100% - 69px);
+  margin: 0;
+}
+
+.window-nav h3::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  background-size: contain;
+}
+
+.window-label::before {
+  background-image: url(../assets/icons/notepad.ico);
+  background-repeat: no-repeat;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.window-label span {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 3px;
+}
+
+/* Button styles */
+.buttons {
+  display: flex;
+}
+
+.window-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 20px;
+  background: #cac6cb;
+  border: none;
+  box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #fcfcfc,
+    inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #cac6cb;
+}
+
+.window-button:active {
+  box-shadow: inset -1.5px -1.5px 0 0 #fcfcfc, inset 1.5px 1.5px 0 0 #263238,
+    inset -3px -3px 0 0 #cac6cb, inset 3px 3px 0 0 #a099a1;
+}
+
+.window-button::before {
+  content: "";
+  background-position: center center;
+  background-size: contain;
+}
+
+.window-button:last-child {
+  margin-left: 3px;
+}
+
+.window-button.minimize::after {
+  content: "";
+  display: block;
+  position: absolute;
+  margin-top: 7px;
+  width: 9px;
+  height: 3px;
+  background: #263238;
+  margin-right: 1px;
+}
+
+.window-button.maximize::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 9px;
+  height: 7px;
+  background-color: #cac6cb;
+  border: 1.75px solid #263238;
+  border-top-width: 3px;
+  margin-right: 1px;
+}
+
+/* Menu styles */
+.menu-bar {
+  display: flex;
+  padding: 2px 0;
+  background-color: #cac6cb;
+  font-size: 18px;
+  list-style: none;
+}
+
+.menu-item {
+  position: relative;
+  padding: 4px 10px;
+  cursor: default;
+}
+
+.menu-item:hover {
+  background-color: #577783;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-item:hover .dropdown {
+  display: block;
+}
+
+.menu-item:hover .highlight {
+  color: white;
+}
+
+.highlight {
+  text-decoration: underline;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #cac6cb;
+  box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #dedcde,
+    inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #fcfcfc;
+  list-style: none;
+  width: 160px;
+  z-index: 100;
+  padding: 6px;
+}
+
+.dropdown li {
+  padding: 6.5px 30px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dropdown hr {
+  margin: 4px 0;
+  border: 0;
+  height: 3px;
+  width: 100%;
+  cursor: default;
+  background: linear-gradient(to bottom, #a099a1 0%, #a099a1 50%, #fcfcfc 50%);
+}
+
+.dropdown li:hover {
+  background-color: #577783;
+  color: white;
+}
+
+.dropdown li .highlight {
+  color: #263238 !important;
+}
+
+.dropdown li:hover .highlight {
+  color: white !important;
+}
+
+/* Window content styles */
+.window-content {
+  box-shadow: inset -1.5px -1.5px 0 0 #fcfcfc, inset 1.5px 1.5px 0 0 #a099a1,
+    inset -3px -3px 0 0 #cac6cb, inset 3px 3px 0 0 #263238;
+  padding: 3px;
+  height: calc(100% - 60px);
+  overflow: hidden;
+}
+
+.window-content textarea {
+  font-size: 21px;
+  border: 0;
+  padding: 4px;
+  resize: none;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.window-content textarea::-webkit-scrollbar-corner {
+  background-color: #cac6cb;
+}
+
+.window-content textarea::selection {
+  background-color: #577783;
+  -webkit-tap-highlight-color: #577783;
+  color: white;
+}
+
+.window-content textarea:focus {
+  outline: none;
+}

@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // makes window draggable
     function makeDraggable(element) {
-        const titleBar = element.querySelector(".title-bar");
+        const titleBar = element.querySelector(".window-nav");
         let offsetX = 0, offsetY = 0, initialX, initialY;
 
         titleBar.addEventListener("mousedown", (e) => {
