@@ -219,6 +219,78 @@
   color: white;
 }
 
+.window-content textarea::-webkit-scrollbar {
+  width: 24px;
+  height: 24px;
+}
+
+.window-content textarea::-webkit-scrollbar-button {
+  box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #fcfcfc,
+    inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #dedcde;
+  width: 24px;
+  height: 24px;
+  background-color: #cac6cb;
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: default;
+}
+
+.window-content textarea::-webkit-scrollbar-button:active {
+  background-position: 2px 2px;
+  border: 1.5px solid #a099a1;
+  box-shadow: none;
+}
+
+.window-content textarea::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url(../assets/icons/up.png);
+}
+
+.window-content textarea::-webkit-scrollbar-button:vertical:increment {
+  background-image: url(../assets/icons/down.png);
+}
+
+.window-content textarea::-webkit-scrollbar-button:horizontal:decrement {
+  background-image: url(../assets/icons/left.png);
+}
+
+.window-content textarea::-webkit-scrollbar-button:horizontal:increment {
+  background-image: url(../assets/icons/right.png);
+}
+
+.window-content textarea::-webkit-scrollbar-thumb {
+  box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #fcfcfc,
+    inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #dedcde;
+  width: 24px;
+  height: 24px;
+  background-color: #cac6cb;
+  z-index: 1;
+  cursor: default;
+}
+
+.window-content textarea::-webkit-scrollbar-track {
+  background-color: #f0ebeb;
+  background-image: linear-gradient(
+      45deg,
+      #efeef0 25%,
+      transparent 25%,
+      transparent 75%,
+      #efeef0 75%,
+      #efeef0
+    ),
+    linear-gradient(
+      45deg,
+      #efeef0 25%,
+      transparent 25%,
+      transparent 75%,
+      #efeef0 75%,
+      #efeef0
+    );
+  background-size: 2px 2px;
+  background-position: 0 0, 1px 1px;
+  cursor: default;
+}
+
 .window-content textarea:focus {
   outline: none;
 }
