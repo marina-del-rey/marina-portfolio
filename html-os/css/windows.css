@@ -27,6 +27,7 @@
   color: white;
   touch-action: none;
   line-height: 35px;
+  cursor: grabbing;
 }
 
 .inactive .window-nav {
