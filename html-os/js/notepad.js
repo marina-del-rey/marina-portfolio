@@ -104,6 +104,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (notepadWindow) {
             notepadWindow.style.display = "none";
             setTaskbarActiveState(false);
+
+            const innerWindow = notepadWindow.querySelector(".window-inside");
+            innerWindow.style.width = "";  // reset width
+            innerWindow.style.height = ""; // reset height
+
+            return;
         }
 
         // hide the taskbar icon
@@ -170,6 +176,5 @@ document.addEventListener("DOMContentLoaded", function () {
         openNotepad();
         showNotepadTaskbarIcon();
     });
-
 
 });

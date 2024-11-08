@@ -11,6 +11,8 @@
   max-height: calc(100vh - 44px - 12px);
   min-width: 300px;
   min-height: 200px;
+  width: 475px;
+  height: 550px;
   overflow: hidden;
   resize: both;
 }
