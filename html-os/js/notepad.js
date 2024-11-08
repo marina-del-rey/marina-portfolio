@@ -29,8 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 // add taskbar icon
                 addNotepadTaskbarIcon();
 
-                // close button
-                notepadWindow.querySelector(".close-button").addEventListener("click", closeNotepad);
+                // buttons
+                notepadWindow.querySelector(".minimize").addEventListener("click", minimizeNotepad);
+                notepadWindow.querySelector(".maximize").addEventListener("click", toggleMaximizeNotepad);
+                notepadWindow.querySelector(".close").addEventListener("click", closeNotepad);
             });
     }
 
@@ -71,7 +73,20 @@ document.addEventListener("DOMContentLoaded", function () {
             notepadTask = document.createElement("button");
             notepadTask.id = "notepad-task";
             notepadTask.className = "taskbar-app-tab";
-            notepadTask.innerText = "Notepad";
+
+            // icon image
+            const icon = document.createElement("img");
+            icon.src = "./assets/icons/notepad.ico";
+            icon.alt = "Notepad Icon";
+            icon.className = "taskbar-icon";
+
+            // text container
+            const textContainer = document.createElement("span");
+            textContainer.innerText = "Untitled - Notepad";
+
+            notepadTask.appendChild(icon); // Append icon first
+            notepadTask.appendChild(textContainer); // Append text
+
             taskbarApps.appendChild(notepadTask);
 
             // taskbar icon click to toggle notepad window visibility
@@ -86,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function closeNotepad() {
         // if exists, hide it
         if (notepadWindow) {
+            notepadWindow.classList.remove("inactive");
+
             notepadWindow.style.display = "none";
         }
 
@@ -93,6 +110,38 @@ document.addEventListener("DOMContentLoaded", function () {
         const notepadTask = document.getElementById("notepad-task");
         if (notepadTask) {
             notepadTask.style.display = "none";
+        }
+    }
+
+    // minimizes notepad
+    function minimizeNotepad() {
+        if (notepadWindow) {
+            notepadWindow.style.display = "none";
+        }
+    }
+
+    // maximize/restore the notepad window
+    function toggleMaximizeNotepad() {
+        if (!notepadWindow.classList.contains("maximized")) {
+            // store current position and size
+            notepadWindow.dataset.prevTop = notepadWindow.style.top;
+            notepadWindow.dataset.prevLeft = notepadWindow.style.left;
+            notepadWindow.dataset.prevWidth = notepadWindow.style.width;
+            notepadWindow.dataset.prevHeight = notepadWindow.style.height;
+
+            // maximize the window
+            notepadWindow.style.top = "0";
+            notepadWindow.style.left = "0";
+            notepadWindow.style.width = "100vw";
+            notepadWindow.style.height = "100vh";
+            notepadWindow.classList.add("maximized");
+        } else {
+            // restore the previous position and size
+            notepadWindow.style.top = notepadWindow.dataset.prevTop;
+            notepadWindow.style.left = notepadWindow.dataset.prevLeft;
+            notepadWindow.style.width = notepadWindow.dataset.prevWidth;
+            notepadWindow.style.height = notepadWindow.dataset.prevHeight;
+            notepadWindow.classList.remove("maximized");
         }
     }
 
@@ -107,5 +156,16 @@ document.addEventListener("DOMContentLoaded", function () {
     notepadIcon.addEventListener("click", () => {
         openNotepad();
         showNotepadTaskbarIcon();
+    });
+
+    // change color of window nav background when click outside
+    document.addEventListener("click", (e) => {
+        if (notepadWindow) {
+            if (notepadWindow.contains(e.target)) {
+                notepadWindow.classList.remove("inactive");
+            } else {
+                notepadWindow.classList.add("inactive");
+            }
+        }
     });
 });

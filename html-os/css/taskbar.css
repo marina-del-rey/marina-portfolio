@@ -129,8 +129,23 @@
 #taskbar-apps {
   display: flex;
   flex-grow: 1;
-  margin-left: 10px;
+  margin-left: 4px;
   gap: 5px;
+}
+
+#notepad-task {
+  display: flex;
+  align-items: center;
+  box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #fcfcfc,
+    inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #cac6cb;
+  height: 36px;
+  background-color: #cac6cb;
+  padding-right: 10px;
+  padding-left: 6px;
+  border: none;
+  width: 220px;
+  justify-content: flex-start;
+  font-size: 18px;
 }
 
 /* System tray styles */
