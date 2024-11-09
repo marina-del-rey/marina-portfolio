@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (browserWindow) {
             browserWindow.style.display = "block";
             browserWindow.style.zIndex = 10;
-            addNotepadTaskbarIcon();
+            addBrowserTaskToTaskbar();
             setActiveState(true);
             return;
         }
@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 browserWindow.style.left = "100px";
                 makeDraggable(browserWindow);
 
-                //addNotepadTaskbarIcon();
-                //setActiveState(true);
+                addBrowserTaskToTaskbar();
+                setActiveState(true);
 
                 // buttons
                 //browserWindow.querySelector(".minimize").addEventListener("click", minimizeNotepad);
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // click inside the window to activate it
                 browserWindow.addEventListener("mousedown", (e) => {
                     e.stopPropagation();
-                    //setActiveState(true);
+                    setActiveState(true);
                 });
             });
     }
@@ -71,7 +71,86 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // add task to taskbar
+    function addBrowserTaskToTaskbar() {
+        let browserTask = document.getElementById("browser-task");
+        if (!browserTask) {
+            browserTask = document.createElement("button");
+            browserTask.id = "browser-task";
+            browserTask.className = "taskbar-app-tab";
+
+            // icon image
+            const icon = document.createElement("img");
+            icon.src = "./assets/icons/browser.ico";
+            icon.alt = "Browser Icon";
+            icon.className = "taskbar-icon";
+
+            // text container
+            const textContainer = document.createElement("span");
+            textContainer.innerText = "Browser";
+
+            browserTask.appendChild(icon);
+            browserTask.appendChild(textContainer);
+
+            taskbarApps.appendChild(browserTask);
+
+            // taskbar icon click to toggle browser window visibility
+            browserTask.addEventListener("click", () => {
+                const isVisible = browserWindow.style.display !== "none";
+                const isWindowInactive = browserWindow.classList.contains("inactive");
+
+                if (isVisible) {
+                    if (isWindowInactive) {
+                        setTaskbarActiveState(true);
+                        browserWindow.style.display = "none";
+                        setTimeout(() => setTaskbarActiveState(false), 100);
+                    } else {
+                        browserWindow.style.display = "none";
+                        setTaskbarActiveState(false);
+                    }
+                } else {
+                    browserWindow.style.display = "block";
+                    setActiveState(true);
+                }
+            });
+        }
+    }
+
+    // shows the taskbar icon
+    function showBrowserTaskbarIcon() {
+        const browserTask = document.getElementById("browser-task");
+        if (browserTask) {
+            browserTask.style.display = "flex";
+        }
+    }
+
+    // used for styling task button
+    function setTaskbarActiveState(isActive) {
+        const browserTask = document.getElementById("browser-task");
+        if (browserTask) {
+            if (isActive) {
+                browserTask.classList.add("active");
+            } else {
+                browserTask.classList.remove("active");
+            }
+        }
+    }
+
+    // sets the active state for the browser window
+    function setActiveState(isActive) {
+        if (browserWindow) {
+            if (isActive) {
+                browserWindow.classList.remove("inactive");
+                setTaskbarActiveState(true);
+            } else {
+                browserWindow.classList.add("inactive");
+                setTaskbarActiveState(false);
+            }
+        }
+    }
+
     browserIcon.addEventListener("click", () => {
         openBrowser();
+        showBrowserTaskbarIcon();
     });
 });

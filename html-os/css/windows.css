@@ -320,3 +320,69 @@
 .window-content textarea:focus {
   outline: none;
 }
+
+/* Browser address bar styles */
+.divider {
+  border: 0;
+  height: 2px;
+  width: 100%;
+  cursor: default;
+  background: linear-gradient(to bottom, #a099a1 0%, #a099a1 50%, #fcfcfc 50%);
+}
+
+.address-bar {
+  display: flex;
+  align-items: center;
+  padding: 4px 0px 4px 10px;
+}
+
+.address-bar span {
+  font-size: 18px;
+  margin-right: 4px;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.address-bar input {
+  box-shadow: inset -1.5px -1.5px 0 0 #fcfcfc, inset 1.5px 1.5px 0 0 #a099a1,
+    inset -3px -3px 0 0 #cac6cb, inset 3px 3px 0 0 #263238;
+  border: none;
+  outline: none;
+  padding: 6px;
+  font-size: 18px;
+  width: 100%;
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+.input-button {
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #fcfcfc,
+    inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #cac6cb;
+  height: 24px;
+  width: 24px;
+  background-color: #cac6cb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-button img {
+  width: 15px;
+  height: 15px;
+  display: flex;
+}
+
+.input-button:active {
+  box-shadow: inset -1.5px -1.5px 0 0 #fcfcfc, inset 1.5px 1.5px 0 0 #263238,
+    inset -3px -3px 0 0 #cac6cb, inset 3px 3px 0 0 #a099a1;
+}

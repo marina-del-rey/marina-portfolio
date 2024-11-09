@@ -194,7 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // sets the active state for the notepad window
     function setActiveState(isActive) {
         if (notepadWindow) {
-            // Toggle the window active state
             if (isActive) {
                 notepadWindow.classList.remove("inactive");
                 setTaskbarActiveState(true);
