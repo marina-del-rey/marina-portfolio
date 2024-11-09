@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
             innerWindow.style.width = "";  // reset width
             innerWindow.style.height = ""; // reset height
 
-            return;
+            //return;
         }
 
         // hide the taskbar icon

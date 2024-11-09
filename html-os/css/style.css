@@ -24,7 +24,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 10px;
+  padding: 10px 10px 10px 5px;
   overflow: hidden;
   height: 95vh;
 }
@@ -32,7 +32,6 @@
 /* Desktop icon styles */
 .icons-container {
   position: relative;
-  z-index: 1;
   padding-top: 3px;
   height: 100%;
 }
@@ -46,17 +45,50 @@
 }
 
 .desktop-icon:not(:first-child) {
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 .desktop-icon img {
-  width: 37px;
-  height: 37px;
-  margin-bottom: 3px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 4px;
 }
 
 .desktop-icon span {
   padding: 1px;
   border: 1.5px solid transparent;
   text-align: center;
+  background-color: transparent;
+}
+
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.desktop-icon.selected img {
+  background-color: transparent;
+  background-image: linear-gradient(
+      45deg,
+      #b2738e 25%,
+      transparent 25%,
+      transparent 75%,
+      #b2738e 75%,
+      #b2738e
+    ),
+    linear-gradient(
+      45deg,
+      #b2738e 25%,
+      transparent 25%,
+      transparent 75%,
+      #b2738e 75%,
+      #b2738e
+    );
+  background-size: 3px 3px;
+  display: block;
+}
+
+.desktop-icon.selected span {
+  background-color: #b2738e;
+  color: white;
 }

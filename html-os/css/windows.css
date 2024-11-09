@@ -6,13 +6,24 @@
     inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #fcfcfc;
 }
 
-.window-inside {
+.window-inside.notepad {
   max-width: calc(100vw - 36px);
   max-height: calc(100vh - 44px - 12px);
   min-width: 300px;
   min-height: 200px;
   width: 475px;
   height: 550px;
+  overflow: hidden;
+  resize: both;
+}
+
+.window-inside.browser {
+  max-width: calc(100vw - 36px);
+  max-height: calc(100vh - 44px - 12px);
+  min-width: 300px;
+  min-height: 200px;
+  width: 1125px;
+  height: 750px;
   overflow: hidden;
   resize: both;
 }
@@ -51,8 +62,16 @@
   background-size: contain;
 }
 
-.window-label::before {
+.window-label.notepad::before {
   background-image: url(../assets/icons/notepad.ico);
+  background-repeat: no-repeat;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.window-label.browser::before {
+  background-image: url(../assets/icons/browser.ico);
   background-repeat: no-repeat;
   display: inline-flex;
   align-items: center;
