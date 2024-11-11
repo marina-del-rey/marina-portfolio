@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marina's portfolio</title>
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="../css/portfolio-site.css">
+</head>
+
+<body>
+    <div class="content-box">
+        <div class="header">
+            <img src="../assets/images/cat-relaxing.gif">
+            <p class="title">marina's portfolio</p>
+            <div class="navbar">
+                <ul>
+                    <li>[<a href="#home" onclick="showSection('home')">home</a>]</li>
+                    <li>[<a href="#about" onclick="showSection('about')">about</a>]</li>
+                    <li>[<a href="#projects" onclick="showSection('projects')">projects</a>]</li>
+                    <li>[<a href="#contact" onclick="showSection('contact')">contact</a>]</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-container">
+            <section id="home">
+                <p>Welcome to the home section of the website.</p>
+            </section>
+
+            <section id="about">
+                <p>This section contains information about me.</p>
+            </section>
+
+            <section id="projects">
+                <div class="projects-container">
+                    <ul>
+                        <p class="title">Trivial</p>
+                        <p class="url">[trivial.marinavn.net]</p>
+                        <li>
+                            <p class="text">A trivia app where users can customize their quiz experience by
+                                selecting categories and difficulty levels, tracking their score in real-time as they
+                                race against a timer for each question. After completing a quiz, users have the option
+                                to add their score to a public leaderboard.
+                            </p>
+                        </li>
+                        <li>
+                            <p class="text">I created, designed, and configured the web app, setting up and managing the
+                                database while handling deployment, server configuration, and database administration.
+                            </p>
+                            <p class="made-with">
+                                <b>Stack: </b>React, Express, Node.js, SQLite, Nginx, Docker
+                            </p>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="contact">
+                <p>Get in touch with me through this section.</p>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            const activeSection = document.getElementById(sectionId);
+            activeSection.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('home');
+        });
+    </script>
+</body>
+
+</html>

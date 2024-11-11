@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../assets/images/stars\ 1.gif") center center;
+}
+
+.content-box {
+  background-color: #fae0e4;
+  padding: 20px;
+  width: 550px;
+  height: 810px;
+  text-align: center;
+  border: 1px solid #370617;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-box .title {
+  font-size: 25px;
+  margin-top: 5px;
+  color: #370617;
+}
+
+.header {
+  flex-shrink: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li {
+  margin-right: 7.5px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.5s ease;
+}
+
+.navbar a:hover {
+  color: #1b998b;
+}
+
+.text-container {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Sections styling */
+section {
+  display: none;
+  padding: 20px 10px;
+}
+
+section.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.projects-container {
+  display: flex;
+}
+
+.projects-container ul {
+  text-align: left;
+}
+
+.projects-container .title {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.projects-container .url {
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.projects-container .text {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.projects-container .made-with {
+  font-size: 14px;
+  font-weight: 400;
+}
