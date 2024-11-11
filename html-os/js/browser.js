@@ -237,7 +237,6 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 browserWindow.classList.add("inactive");
                 setTaskbarActiveState(false);
-
             }
         }
     }
