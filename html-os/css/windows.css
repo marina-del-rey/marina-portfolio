@@ -251,20 +251,19 @@
 
 .window-content.browser {
   box-sizing: border-box;
-  height: calc(100% - 95px);
-  overflow-y: auto;
-  padding: 0;
-  margin: 0;
+}
+
+.iframe-container {
+  height: calc(100% - 33px);
+  overflow-y: scroll;
   display: block;
-  position: relative;
 }
 
 .window-content.browser iframe {
   border: none;
+  display: block;
   width: 100%;
   height: 95vh;
-  position: absolute;
-  display: block;
 }
 
 .window-content textarea {
@@ -432,7 +431,7 @@
 }
 
 /* Window content scroll bars */
-.window-content.browser::-webkit-scrollbar-corner {
+.iframe-container ::-webkit-scrollbar-corner {
   background-color: #cac6cb;
 }
 
@@ -442,12 +441,12 @@
   color: white;
 }
 
-.window-content.browser::-webkit-scrollbar {
+.iframe-container::-webkit-scrollbar {
   width: 22px;
   height: 22px;
 }
 
-.window-content.browser::-webkit-scrollbar-button {
+.iframe-container::-webkit-scrollbar-button {
   box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #fcfcfc,
     inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #dedcde;
   width: 22px;
@@ -459,29 +458,29 @@
   cursor: default;
 }
 
-.window-content.browser::-webkit-scrollbar-button:active {
+.iframe-container::-webkit-scrollbar-button:active {
   background-position: 3px 3px;
   border: 1.5px solid #a099a1;
   box-shadow: none;
 }
 
-.window-content.browser::-webkit-scrollbar-button:vertical:decrement {
+.iframe-container::-webkit-scrollbar-button:vertical:decrement {
   background-image: url(../assets/icons/up.png);
 }
 
-.window-content.browser::-webkit-scrollbar-button:vertical:increment {
+.iframe-container::-webkit-scrollbar-button:vertical:increment {
   background-image: url(../assets/icons/down.png);
 }
 
-.window-content.browser:-webkit-scrollbar-button:horizontal:decrement {
+.iframe-container::-webkit-scrollbar-button:horizontal:decrement {
   background-image: url(../assets/icons/left.png);
 }
 
-.window-content.browser::-webkit-scrollbar-button:horizontal:increment {
+.iframe-container::-webkit-scrollbar-button:horizontal:increment {
   background-image: url(../assets/icons/right.png);
 }
 
-.window-content.browser::-webkit-scrollbar-thumb {
+.iframe-container::-webkit-scrollbar-thumb {
   box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #fcfcfc,
     inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #dedcde;
   width: 24px;
@@ -491,7 +490,7 @@
   cursor: default;
 }
 
-.window-content.browser::-webkit-scrollbar-track {
+.iframe-container::-webkit-scrollbar-track {
   background-color: #f0ebeb;
   background-image: linear-gradient(
       45deg,
