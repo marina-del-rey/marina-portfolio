@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // closes notepad
+    // closes browser
     function closeBrowser() {
         // if exists, hide it
         if (browserWindow) {
@@ -128,7 +128,17 @@ document.addEventListener("DOMContentLoaded", function () {
             innerWindow.style.width = "";  // reset width
             innerWindow.style.height = ""; // reset height
 
-            //return;
+            if (browserWindow.classList.contains("maximized")) {
+                const innerWindow = browserWindow.querySelector(".window-inside");
+
+                // restore the original size and position
+                browserWindow.style.top = browserWindow.dataset.originalTop;
+                browserWindow.style.left = browserWindow.dataset.originalLeft;
+
+                browserWindow.classList.remove("maximized");
+                const maximizeButton = browserWindow.querySelector(".window-button.maximize");
+                maximizeButton.classList.remove("maximized");
+            }
         }
 
         // hide the taskbar icon
@@ -152,6 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const desktop = document.getElementById("desktop");
         const innerWindow = browserWindow.querySelector(".window-inside");
+        const maximizeButton = browserWindow.querySelector(".window-button.maximize");
 
         if (browserWindow.classList.contains("maximized")) {
             // restore the original size and position
@@ -161,6 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
             browserWindow.style.left = browserWindow.dataset.originalLeft;
 
             browserWindow.classList.remove("maximized");
+            maximizeButton.classList.remove("maximized");
         } else {
             // store the current size and position
             browserWindow.dataset.originalWidth = innerWindow.style.width;
@@ -174,6 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
             browserWindow.style.left = "0";
 
             browserWindow.classList.add("maximized");
+            maximizeButton.classList.add("maximized");
         }
 
     }

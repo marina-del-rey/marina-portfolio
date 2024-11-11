@@ -128,6 +128,18 @@ document.addEventListener("DOMContentLoaded", function () {
             innerWindow.style.width = "";  // reset width
             innerWindow.style.height = ""; // reset height
 
+            if (notepadWindow.classList.contains("maximized")) {
+                const innerWindow = notepadWindow.querySelector(".window-inside");
+
+                // restore the original size and position
+                notepadWindow.style.top = notepadWindow.dataset.originalTop;
+                notepadWindow.style.left = notepadWindow.dataset.originalLeft;
+
+                notepadWindow.classList.remove("maximized");
+                const maximizeButton = notepadWindow.querySelector(".window-button.maximize");
+                maximizeButton.classList.remove("maximized");
+            }
+
             // clear the text in the textarea when closing
             const textArea = notepadWindow.querySelector("textarea");
             if (textArea) {
