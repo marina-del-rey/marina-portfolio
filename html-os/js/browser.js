@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskbarApps = document.getElementById("taskbar-apps");
     const browserIcon = document.getElementById("browser-icon");
     let browserWindow = null;
+    let zIndexCounter = 10;
 
     // opens browser
     function openBrowser() {
@@ -30,9 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 setActiveState(true);
 
                 // buttons
-                //browserWindow.querySelector(".minimize").addEventListener("click", minimizeNotepad);
-                //browserWindow.querySelector(".maximize").addEventListener("click", toggleMaximizeNotepad);
-                //browserWindow.querySelector(".close").addEventListener("click", closeNotepad);
+                browserWindow.querySelector(".minimize").addEventListener("click", minimizeBrowser);
+                browserWindow.querySelector(".maximize").addEventListener("click", toggleMaximizeBrowser);
+                browserWindow.querySelector(".close").addEventListener("click", closeBrowser);
 
                 // click inside the window to activate it
                 browserWindow.addEventListener("mousedown", (e) => {
@@ -116,6 +117,67 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // closes notepad
+    function closeBrowser() {
+        // if exists, hide it
+        if (browserWindow) {
+            browserWindow.style.display = "none";
+            setTaskbarActiveState(false);
+
+            const innerWindow = browserWindow.querySelector(".window-inside");
+            innerWindow.style.width = "";  // reset width
+            innerWindow.style.height = ""; // reset height
+
+            //return;
+        }
+
+        // hide the taskbar icon
+        const browserTask = document.getElementById("browser-task");
+        if (browserTask) {
+            browserTask.style.display = "none";
+        }
+    }
+
+    // minimizes notepad
+    function minimizeBrowser() {
+        if (browserWindow) {
+            browserWindow.style.display = "none";
+            setTaskbarActiveState(false);
+        }
+    }
+
+    // maximize/restore the notepad window
+    function toggleMaximizeBrowser() {
+        if (!browserWindow) return;
+
+        const desktop = document.getElementById("desktop");
+        const innerWindow = browserWindow.querySelector(".window-inside");
+
+        if (browserWindow.classList.contains("maximized")) {
+            // restore the original size and position
+            innerWindow.style.width = browserWindow.dataset.originalWidth;
+            innerWindow.style.height = browserWindow.dataset.originalHeight;
+            browserWindow.style.top = browserWindow.dataset.originalTop;
+            browserWindow.style.left = browserWindow.dataset.originalLeft;
+
+            browserWindow.classList.remove("maximized");
+        } else {
+            // store the current size and position
+            browserWindow.dataset.originalWidth = innerWindow.style.width;
+            browserWindow.dataset.originalHeight = innerWindow.style.height;
+            browserWindow.dataset.originalTop = browserWindow.style.top;
+            browserWindow.dataset.originalLeft = browserWindow.style.left;
+
+            innerWindow.style.width = `${desktop.clientWidth}px`;
+            innerWindow.style.height = `${desktop.clientHeight}px`;
+            browserWindow.style.top = "0";
+            browserWindow.style.left = "0";
+
+            browserWindow.classList.add("maximized");
+        }
+
+    }
+
     // shows the taskbar icon
     function showBrowserTaskbarIcon() {
         const browserTask = document.getElementById("browser-task");
@@ -145,9 +207,17 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 browserWindow.classList.add("inactive");
                 setTaskbarActiveState(false);
+
             }
         }
     }
+
+    // clicks outside browser window deactivates it
+    document.addEventListener("mousedown", (event) => {
+        if (browserWindow && !browserWindow.contains(event.target) && !taskbarApps.contains(event.target)) {
+            setActiveState(false);
+        }
+    });
 
     browserIcon.addEventListener("click", () => {
         openBrowser();

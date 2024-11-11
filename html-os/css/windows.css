@@ -7,8 +7,8 @@
 }
 
 .window-inside.notepad {
-  max-width: calc(100vw - 36px);
-  max-height: calc(100vh - 44px - 12px);
+  max-width: calc(100vw - 10px);
+  max-height: calc(100vh - 44px - 15px);
   min-width: 300px;
   min-height: 200px;
   width: 475px;
@@ -18,8 +18,8 @@
 }
 
 .window-inside.browser {
-  max-width: calc(100vw - 36px);
-  max-height: calc(100vh - 44px - 12px);
+  max-width: calc(100vw - 10px);
+  max-height: calc(100vh - 44px - 14px);
   min-width: 300px;
   min-height: 200px;
   width: 1125px;
@@ -138,6 +138,31 @@
   border: 1.75px solid #263238;
   border-top-width: 3px;
   margin-right: 1px;
+}
+
+.window-button.maximize.maximized::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 5px;
+  border: 1.5px solid #263238;
+  border-top-width: 3px;
+  background-color: #cac6cb;
+  margin-top: -5px;
+}
+
+.window-button.maximize.maximized::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 5px;
+  border: 1.5px solid #263238;
+  border-top-width: 3px;
+  background-color: #cac6cb;
+  margin-right: 6px;
+  margin-top: 2px;
 }
 
 /* Menu styles */

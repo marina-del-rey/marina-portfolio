@@ -128,7 +128,11 @@ document.addEventListener("DOMContentLoaded", function () {
             innerWindow.style.width = "";  // reset width
             innerWindow.style.height = ""; // reset height
 
-            //return;
+            // clear the text in the textarea when closing
+            const textArea = notepadWindow.querySelector("textarea");
+            if (textArea) {
+                textArea.value = "";
+            }
         }
 
         // hide the taskbar icon
@@ -148,27 +152,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // maximize/restore the notepad window
     function toggleMaximizeNotepad() {
-        if (!notepadWindow.classList.contains("maximized")) {
-            // store current position and size
-            notepadWindow.dataset.prevTop = notepadWindow.style.top;
-            notepadWindow.dataset.prevLeft = notepadWindow.style.left;
-            notepadWindow.dataset.prevWidth = notepadWindow.style.width;
-            notepadWindow.dataset.prevHeight = notepadWindow.style.height;
+        if (!notepadWindow) return;
 
-            // maximize the window
+        const desktop = document.getElementById("desktop");
+        const innerWindow = notepadWindow.querySelector(".window-inside");
+        const maximizeButton = notepadWindow.querySelector(".window-button.maximize");
+
+        if (notepadWindow.classList.contains("maximized")) {
+            // restore the original size and position
+            innerWindow.style.width = notepadWindow.dataset.originalWidth;
+            innerWindow.style.height = notepadWindow.dataset.originalHeight;
+            notepadWindow.style.top = notepadWindow.dataset.originalTop;
+            notepadWindow.style.left = notepadWindow.dataset.originalLeft;
+
+            notepadWindow.classList.remove("maximized");
+            maximizeButton.classList.remove("maximized");
+        } else {
+            // store the current size and position
+            notepadWindow.dataset.originalWidth = innerWindow.style.width;
+            notepadWindow.dataset.originalHeight = innerWindow.style.height;
+            notepadWindow.dataset.originalTop = notepadWindow.style.top;
+            notepadWindow.dataset.originalLeft = notepadWindow.style.left;
+
+            innerWindow.style.width = `${desktop.clientWidth}px`;
+            innerWindow.style.height = `${desktop.clientHeight}px`;
             notepadWindow.style.top = "0";
             notepadWindow.style.left = "0";
-            notepadWindow.style.width = "100vw";
-            notepadWindow.style.height = "100vh";
+
             notepadWindow.classList.add("maximized");
-        } else {
-            // restore the previous position and size
-            notepadWindow.style.top = notepadWindow.dataset.prevTop;
-            notepadWindow.style.left = notepadWindow.dataset.prevLeft;
-            notepadWindow.style.width = notepadWindow.dataset.prevWidth;
-            notepadWindow.style.height = notepadWindow.dataset.prevHeight;
-            notepadWindow.classList.remove("maximized");
+            maximizeButton.classList.add("maximized");
         }
+
     }
 
     // shows the taskbar icon
@@ -204,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // clicks outside notepad window deactivate it
+    // clicks outside notepad window deactivates it
     document.addEventListener("mousedown", (event) => {
         if (notepadWindow && !notepadWindow.contains(event.target) && !taskbarApps.contains(event.target)) {
             setActiveState(false);
