@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function makeDraggable(element) {
         const titleBar = element.querySelector(".window-nav");
         let offsetX = 0, offsetY = 0, initialX, initialY;
+        const innerWindow = element.querySelector(".window-inside");
 
         titleBar.addEventListener("mousedown", (e) => {
             e.preventDefault();
@@ -57,13 +58,29 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         function dragWindow(e) {
+            const desktop = document.getElementById("desktop");
             offsetX = e.clientX - initialX;
             offsetY = e.clientY - initialY;
             initialX = e.clientX;
             initialY = e.clientY;
 
-            element.style.top = `${element.offsetTop + offsetY}px`;
-            element.style.left = `${element.offsetLeft + offsetX}px`;
+            // calculate new window position
+            let newTop = element.offsetTop + offsetY;
+            let newLeft = element.offsetLeft + offsetX;
+
+            const maxLeft = 0;
+            const maxTop = 0;
+            const maxRight = desktop.clientWidth - innerWindow.getBoundingClientRect().width - 12;
+            const maxBottom = desktop.clientHeight - innerWindow.getBoundingClientRect().height;
+
+            // constrain within boundaries
+            if (newTop < maxTop) newTop = maxTop;
+            if (newLeft < maxLeft) newLeft = maxLeft;
+            if (newTop > maxBottom) newTop = maxBottom;
+            if (newLeft > maxRight) newLeft = maxRight;
+
+            element.style.top = `${newTop}px`;
+            element.style.left = `${newLeft}px`;
         }
 
         function stopDragging() {
