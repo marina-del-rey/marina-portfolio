@@ -36,9 +36,8 @@ body {
   display: none;
 }
 
-/* Optional: hide scrollbar for Firefox (less widely supported) */
 .text-container {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
 .header {
@@ -49,7 +48,7 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 12.5px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   font-weight: 400;
   font-size: 12px;
 }
@@ -121,6 +120,7 @@ section.active {
 .projects-container .title {
   font-size: 16px;
   margin-bottom: 4px;
+  background-color: #ffdab9;
 }
 
 .projects-container .url {
