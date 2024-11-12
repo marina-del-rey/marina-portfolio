@@ -150,6 +150,7 @@
   border-top-width: 3px;
   background-color: #cac6cb;
   margin-top: -5px;
+  margin-left: 2px;
 }
 
 .window-button.maximize.maximized::after {
@@ -161,7 +162,7 @@
   border: 1.5px solid #263238;
   border-top-width: 3px;
   background-color: #cac6cb;
-  margin-right: 6px;
+  margin-right: 3px;
   margin-top: 2px;
 }
 

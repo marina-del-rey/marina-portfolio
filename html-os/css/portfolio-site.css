@@ -30,8 +30,15 @@ body {
 
 .content-box .title {
   font-size: 25px;
-  margin-top: 5px;
   color: #370617;
+}
+.text-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Optional: hide scrollbar for Firefox (less widely supported) */
+.text-container {
+  scrollbar-width: none; /* Firefox */
 }
 
 .header {
@@ -41,9 +48,10 @@ body {
 .navbar {
   display: flex;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 12.5px;
+  margin-bottom: 25px;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .navbar ul {
@@ -69,13 +77,23 @@ body {
 
 .text-container {
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: auto; /* Remove scroll from text-container */
+  position: relative;
+}
+
+.text-container::-webkit-scrollbar {
+  display: none;
+}
+
+.text-container {
+  scrollbar-width: none;
 }
 
 /* Sections styling */
 section {
   display: none;
-  padding: 20px 10px;
+  padding: 10px;
+  padding-top: 0;
 }
 
 section.active {
@@ -87,6 +105,11 @@ section.active {
 .projects-container {
   display: flex;
   flex-direction: column;
+  background-color: white;
+  padding: 15px;
+  padding-top: 10px;
+  border: 1px dotted #370617;
+  overflow-y: auto;
 }
 
 .projects-container ul {
