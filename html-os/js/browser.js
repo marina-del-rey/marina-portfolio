@@ -1,3 +1,5 @@
+import { bringWindowToFront } from './windowManager.js';
+
 document.addEventListener("DOMContentLoaded", function () {
     const taskbarApps = document.getElementById("taskbar-apps");
     const browserIcon = document.getElementById("browser-icon");
@@ -7,9 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function openBrowser() {
         if (browserWindow) {
             browserWindow.style.display = "block";
-            browserWindow.style.zIndex = 10;
             addBrowserTaskToTaskbar();
             setActiveState(true);
+            bringWindowToFront(browserWindow);
             return;
         }
 
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 makeDraggable(browserWindow);
                 addBrowserTaskToTaskbar();
                 setActiveState(true);
+                bringWindowToFront(browserWindow);
 
                 const iframe = browserWindow.querySelector('.iframe-container iframe');
                 preventIframeScrollOnAnchor(iframe);
@@ -40,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 browserWindow.addEventListener("mousedown", (e) => {
                     e.stopPropagation();
                     setActiveState(true);
+                    bringWindowToFront(browserWindow);
                 });
             });
     }
@@ -225,7 +229,6 @@ document.addEventListener("DOMContentLoaded", function () {
             browserWindow.classList.add("maximized");
             maximizeButton.classList.add("maximized");
         }
-
     }
 
     // shows the taskbar icon
@@ -254,6 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (isActive) {
                 browserWindow.classList.remove("inactive");
                 setTaskbarActiveState(true);
+                bringWindowToFront(browserWindow);
             } else {
                 browserWindow.classList.add("inactive");
                 setTaskbarActiveState(false);

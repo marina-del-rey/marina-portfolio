@@ -245,7 +245,7 @@
   box-shadow: inset -1.5px -1.5px 0 0 #fcfcfc, inset 1.5px 1.5px 0 0 #a099a1,
     inset -3px -3px 0 0 #cac6cb, inset 3px 3px 0 0 #263238;
   padding: 3px;
-  height: calc(100% - 60px);
+  height: calc(100% - 58px);
 }
 
 .window-content.browser {
@@ -428,7 +428,7 @@
   padding: 0;
   box-shadow: inset -1.5px -1.5px 0 0 #263238, inset 1.5px 1.5px 0 0 #fcfcfc,
     inset -3px -3px 0 0 #a099a1, inset 3px 3px 0 0 #cac6cb;
-  height: 23px;
+  height: 24px;
   width: 24px;
   background-color: #cac6cb;
   display: flex;

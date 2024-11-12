@@ -1,3 +1,5 @@
+import { bringWindowToFront } from './windowManager.js';
+
 document.addEventListener("DOMContentLoaded", function () {
     const taskbarApps = document.getElementById("taskbar-apps");
     const notepadIcon = document.getElementById("notepad-icon");
@@ -7,9 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function openNotepad() {
         if (notepadWindow) {
             notepadWindow.style.display = "block";
-            notepadWindow.style.zIndex = 10;
             addNotepadTaskbarIcon();
             setActiveState(true);
+            bringWindowToFront(notepadWindow);
             return;
         }
 
@@ -25,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 notepadWindow.style.top = "100px";
                 notepadWindow.style.left = "100px";
                 makeDraggable(notepadWindow);
+                bringWindowToFront(notepadWindow);
 
                 addNotepadTaskbarIcon();
                 setActiveState(true);
@@ -38,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 notepadWindow.addEventListener("mousedown", (e) => {
                     e.stopPropagation();
                     setActiveState(true);
+                    bringWindowToFront(notepadWindow);
                 });
             });
     }
@@ -211,7 +215,6 @@ document.addEventListener("DOMContentLoaded", function () {
             notepadWindow.classList.add("maximized");
             maximizeButton.classList.add("maximized");
         }
-
     }
 
     // shows the taskbar icon
@@ -240,6 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (isActive) {
                 notepadWindow.classList.remove("inactive");
                 setTaskbarActiveState(true);
+                bringWindowToFront(notepadWindow);
             } else {
                 notepadWindow.classList.add("inactive");
                 setTaskbarActiveState(false);
