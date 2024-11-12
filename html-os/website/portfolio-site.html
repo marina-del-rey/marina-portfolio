@@ -46,16 +46,18 @@
                                 of
                                 nostalgia to the browsing experience.
                             </p>
+                        </li>
+                        <li>
                             <p class="text">I developed all aspects of the app, including designing and modeling the
                                 3D
                                 room, building the simulated OS, and setting up and configuring the server for
                                 optimal
                                 performance and reliability.
                             </p>
-                            <p class="made-with">
-                                <b>Stack: </b>React, React3Fiber, Express, Node.js, Nginx, Docker
-                            </p>
                         </li>
+                        <p class="made-with">
+                            <b>Stack: </b>React, React3Fiber, Express, Node.js, Nginx, Docker
+                        </p>
                     </ul>
                     <ul class="trivial">
                         <p class="title">Trivial</p>
@@ -75,11 +77,10 @@
                                 database while handling deployment, server configuration, and database
                                 administration.
                             </p>
-                            <p class="made-with">
-                                <b>Stack: </b>React, Express, Node.js, SQLite, Nginx, Docker
-                            </p>
                         </li>
-                        </li>
+                        <p class="made-with">
+                            <b>Stack: </b>React, Express, Node.js, SQLite, Nginx, Docker
+                        </p>
                     </ul>
                     <ul class="my-diary">
                         <p class="title">My Diary</p>
@@ -98,17 +99,19 @@
                                 recovery and email verification, handled deployment, and oversaw server and database
                                 administration.
                             </p>
-                            <p class="made-with">
-                                <b>Stack: </b>React, Express, Node.js, Mongodb, Nginx, Docker, Postfix, Dovecot
-                            </p>
                         </li>
-                        </li>
+                        <p class="made-with">
+                            <b>Stack: </b>React, Express, Node.js, Mongodb, Nginx, Docker, Postfix, Dovecot
+                        </p>
                     </ul>
                 </div>
             </section>
             <section id="contact">
-                <p>Get in touch with me:</p>
-                <p>email: contact@marinavn.net</p>
+                <div class="contact-container">
+                    <p class="title"><i>get in touch with me</i></p>
+                    <p class="email"><b>email: </b>contact@marinavn.net</p>
+                    <img src="../assets/images/email.gif" class="email-gif">
+                </div>
             </section>
         </div>
     </div>
@@ -119,6 +122,15 @@
 
             const activeSection = document.getElementById(sectionId);
             activeSection.classList.add('active');
+
+            const navLinks = document.querySelectorAll('.navbar a');
+            navLinks.forEach(link => link.classList.remove('active-link'));
+
+            // add active-link class to the currently active link
+            const activeLink = document.querySelector(`.navbar a[href="#${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active-link');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
