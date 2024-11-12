@@ -286,6 +286,12 @@
   color: white;
 }
 
+.window-content textarea::-webkit-selection {
+  background-color: #577783;
+  -webkit-tap-highlight-color: #577783;
+  color: white;
+}
+
 .window-content textarea::-webkit-scrollbar {
   width: 24px;
   height: 24px;
@@ -399,6 +405,18 @@
   box-sizing: border-box;
 }
 
+.address-bar input::selection {
+  background-color: #577783;
+  -webkit-tap-highlight-color: #577783;
+  color: white;
+}
+
+.address-bar input::-webkit-selection {
+  background-color: #577783;
+  -webkit-tap-highlight-color: #577783;
+  color: white;
+}
+
 .input-button {
   position: absolute;
   right: 3px;
@@ -432,12 +450,6 @@
 /* Window content scroll bars */
 .iframe-container ::-webkit-scrollbar-corner {
   background-color: #cac6cb;
-}
-
-.window::selection {
-  background-color: #577783;
-  -webkit-tap-highlight-color: #577783;
-  color: white;
 }
 
 .iframe-container::-webkit-scrollbar {

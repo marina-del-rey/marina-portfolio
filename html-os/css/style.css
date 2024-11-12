@@ -27,6 +27,7 @@
   padding: 10px 10px 10px 5px;
   overflow: hidden;
   height: 95vh;
+  user-select: none;
 }
 
 /* Desktop icon styles */

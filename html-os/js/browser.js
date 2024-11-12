@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 const iframe = browserWindow.querySelector('.iframe-container iframe');
                 preventIframeScrollOnAnchor(iframe);
 
-
                 // buttons
                 browserWindow.querySelector(".minimize").addEventListener("click", minimizeBrowser);
                 browserWindow.querySelector(".maximize").addEventListener("click", toggleMaximizeBrowser);
@@ -51,12 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
         iframe.addEventListener('load', () => {
             const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
             initialScrollPos = iframeDocument.documentElement.scrollTop || iframeDocument.body.scrollTop;
-
             iframeDocument.addEventListener('click', (e) => {
                 if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
                     e.preventDefault();
 
-                    // Reset scroll position directly on the iframe's document
+                    // reset scroll position
                     iframeDocument.documentElement.scrollTop = initialScrollPos;
                     iframeDocument.body.scrollTop = initialScrollPos;
 

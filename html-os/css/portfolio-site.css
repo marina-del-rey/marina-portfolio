@@ -116,3 +116,14 @@ section.active {
   font-size: 14px;
   font-weight: 400;
 }
+
+/* Selection color styles*/
+::selection {
+  background-color: #577783;
+  color: white;
+}
+
+::-webkit-selection {
+  background-color: #577783;
+  color: white;
+}
