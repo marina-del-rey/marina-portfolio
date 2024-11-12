@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskbarApps = document.getElementById("taskbar-apps");
     const browserIcon = document.getElementById("browser-icon");
     let browserWindow = null;
-    let zIndexCounter = 10;
 
     // opens browser
     function openBrowser() {
@@ -26,9 +25,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 browserWindow.style.top = "100px";
                 browserWindow.style.left = "100px";
                 makeDraggable(browserWindow);
-
                 addBrowserTaskToTaskbar();
                 setActiveState(true);
+
+                const iframe = browserWindow.querySelector('.iframe-container iframe');
+                preventIframeScrollOnAnchor(iframe);
+
 
                 // buttons
                 browserWindow.querySelector(".minimize").addEventListener("click", minimizeBrowser);
@@ -41,6 +43,26 @@ document.addEventListener("DOMContentLoaded", function () {
                     setActiveState(true);
                 });
             });
+    }
+
+    function preventIframeScrollOnAnchor(iframe) {
+        let initialScrollPos = 0;
+
+        iframe.addEventListener('load', () => {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            initialScrollPos = iframeDocument.documentElement.scrollTop || iframeDocument.body.scrollTop;
+
+            iframeDocument.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+
+                    // Reset scroll position directly on the iframe's document
+                    iframeDocument.documentElement.scrollTop = initialScrollPos;
+                    iframeDocument.body.scrollTop = initialScrollPos;
+
+                }
+            });
+        });
     }
 
     function makeDraggable(element) {

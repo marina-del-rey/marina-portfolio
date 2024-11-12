@@ -86,10 +86,13 @@ section.active {
 
 .projects-container {
   display: flex;
+  flex-direction: column;
 }
 
 .projects-container ul {
   text-align: left;
+  list-style: none;
+  margin-bottom: 20px;
 }
 
 .projects-container .title {
