@@ -28,4 +28,4 @@ dist-ssr
 /build
 .env
 
-public/models/
+/public/models/
