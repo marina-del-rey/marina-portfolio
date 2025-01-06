@@ -1,15 +1,14 @@
 import { Suspense, useRef, useEffect } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import { OrbitControls, useHelper } from "@react-three/drei";
-import RoomModel from './models/RoomModel.jsx';
-import DesktopiFrame from "./models/iframes/DesktopiFrame.jsx";
+import { OrbitControls, useHelper, Html } from "@react-three/drei";
 import { Perf } from 'r3f-perf';
 import { useControls } from 'leva'
 import { DirectionalLightHelper, CameraHelper } from "three";
+import RoomModel from './models/RoomModel.jsx';
 
 const DirectionalLightWithHelper = ({ position, intensity }) => {
     const directionalLightRef = useRef(null);
-    const shadowCameraHelperRef = useRef(null);
+    // const shadowCameraHelperRef = useRef(null);
 
     // useHelper(directionalLightRef, DirectionalLightHelper, 5, "pink");
     
@@ -51,21 +50,16 @@ const Room = () => {
     // });
 
     return (
-        
         <Canvas 
             orthographic 
             camera={{ position: [-60, 60, 60], zoom: 6 }} 
-            gl={{ antialias: false }} 
-            dpr={[1, 2]} 
-            shadows
         >
             {/* <Perf /> */}
-            <DirectionalLightWithHelper position={[-46, 53, 4]} intensity={3} />
-            <ambientLight intensity={1} />
+            {/* <DirectionalLightWithHelper position={[-46, 53, 4]} intensity={3} /> */}
+            <ambientLight intensity={3.5} />
             <OrbitControls />
             <Suspense fallback={null}>
                 <RoomModel />
-                <DesktopiFrame />
             </Suspense>
         </Canvas>
     );
