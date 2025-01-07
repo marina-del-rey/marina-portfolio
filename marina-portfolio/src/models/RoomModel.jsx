@@ -1,7 +1,13 @@
+/* eslint-disable react/display-name */
+/* eslint-disable no-unused-vars */
+import { memo } from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
+import { useCameraStateStore } from '../camera/CameraStateStore';
+import DesktopMonitor from './DesktopMonitor';
 
-const RoomModel = (props) => {
-  const { nodes } = useGLTF('models/room-test.glb');
+const RoomModel = memo(() => {
+  const { nodes } = useGLTF('models/room-test2.glb');
+  // console.log(nodes);
 
   // textures
   const roomTexture = useTexture('textures/RoomBake.jpg');
@@ -15,8 +21,12 @@ const RoomModel = (props) => {
   const shelfTexture = useTexture('textures/ShelfBake.jpg');
   shelfTexture.flipY = false;
 
+  // camera states
+  const cameraState = useCameraStateStore((state) => state.cameraState);
+  const defaultState = useCameraStateStore((state) => state.default);
+
   return (
-    <group {...props} dispose={null}>
+    <group>
         <mesh
           geometry={nodes.room.geometry}  
           position={nodes.room.position}
@@ -57,12 +67,13 @@ const RoomModel = (props) => {
         >
           <meshStandardMaterial map={shelfTexture} />  
         </mesh>
+        <DesktopMonitor node={nodes.desktopscreen} />
     </group>
   )
-};
+});
 
 export default RoomModel;
-useGLTF.preload('models/room-test.glb');
+useGLTF.preload('models/room-test2.glb');
 useTexture.preload('textures/RoomBake.jpg')
 useTexture.preload('textures/FloorBake.jpg');
 useTexture.preload('textures/DeskBake.jpg');
