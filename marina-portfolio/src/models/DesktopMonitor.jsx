@@ -1,13 +1,19 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { memo, useState} from 'react';
+import { memo, useState, useEffect } from 'react';
 import { Select } from '@react-three/postprocessing';
 import { useCameraStateStore } from '../camera/CameraStateStore';
 
 const DesktopMonitor = memo(({ node }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isMonitorHovered, setIsMonitorHovered] = useState(null);
+
+    // update monitor mesh
+    const setMonitorMesh = useCameraStateStore((state) => state.setMonitorMesh);
+    useEffect(() => {
+        setMonitorMesh(node);
+    }, [node, setMonitorMesh]);
 
     // camera states
     const cameraState = useCameraStateStore((state) => state.cameraState);

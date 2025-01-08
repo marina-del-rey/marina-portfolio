@@ -1,13 +1,13 @@
 /* eslint-disable react/display-name */
 /* eslint-disable no-unused-vars */
-import { memo } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import { useCameraStateStore } from '../camera/CameraStateStore';
 import DesktopMonitor from './DesktopMonitor';
 
 const RoomModel = memo(() => {
   const { nodes } = useGLTF('models/room-test2.glb');
-  // console.log(nodes);
+  // console.log(nodes); // DEBUG
 
   // textures
   const roomTexture = useTexture('textures/RoomBake.jpg');
@@ -20,6 +20,16 @@ const RoomModel = memo(() => {
   wallDecorTexture.flipY = false;
   const shelfTexture = useTexture('textures/ShelfBake.jpg');
   shelfTexture.flipY = false;
+
+  // local ref for the floor material
+  const materialRef = useRef();
+  const setFloorMaterialRef = useCameraStateStore((state) => state.setFloorMaterialRef);
+
+  useEffect(() => {
+    if (materialRef.current) {
+      setFloorMaterialRef(materialRef.current);
+    }
+  }, [materialRef, setFloorMaterialRef]);
 
   // camera states
   const cameraState = useCameraStateStore((state) => state.cameraState);
@@ -41,7 +51,12 @@ const RoomModel = memo(() => {
           rotation={nodes.floor.rotation}
           scale={10}
         >
-          <meshStandardMaterial map={floorTexture} />  
+          <meshStandardMaterial 
+            ref={materialRef}
+            map={floorTexture} 
+            transparent={true}
+            opacity={1}
+          />  
         </mesh>
         <mesh
           geometry={nodes.desk.geometry}  
