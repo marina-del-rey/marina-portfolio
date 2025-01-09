@@ -36,7 +36,11 @@ const RoomModel = memo(() => {
   const defaultState = useCameraStateStore((state) => state.default);
 
   return (
-    <group>
+    <group
+      onClick={
+        cameraState === 'default' ? undefined : defaultState
+      }
+    >
         <mesh
           geometry={nodes.room.geometry}  
           position={nodes.room.position}

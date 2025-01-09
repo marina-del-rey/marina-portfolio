@@ -30,66 +30,70 @@ const CameraManager = () => {
     }, [zoomedIn, floorMaterialRef]);
 
     useEffect(() => {
-        if (cameraState === 'default') {
-            cameraControlsRef.current.setLookAt(-60, 60, 60, 0, 0, 0, true);
-        }
-        else if (cameraState === 'desktopMonitor') {
-            const camera = cameraControlsRef.current._camera;
-            const { x, y, z } = camera.position;
-            const r = Math.sqrt(x * x + y * y + z * z);
-            
-            const theta = Math.atan2(z, x);
-            const phi = Math.asin(y / r)
-            const targetTheta = Math.PI /2;
-            const targetPhi = 0;
-
-            const shortestAngularDistance = (current, target) => {
-                let delta = ((current - target + Math.PI) % (2 * Math.PI)) - Math.PI;
-                return delta;
-            };
-            const deltaTheta = shortestAngularDistance(theta, targetTheta);
-            const deltaPhi = shortestAngularDistance(phi, targetPhi);
-
-            cameraControlsRef.current.rotate(deltaTheta, deltaPhi, true);
-
-            // =========================================================================== //
-            
-            // compute bounding box
-            const aabb = new THREE.Box3().setFromObject(monitorMesh);
-            aabb.expandByScalar(1);
-            
-            const padding = { left: 0, right: 0, bottom: 5, top: 1 };
-            aabb.min.x -= padding.left;
-            aabb.min.y -= padding.bottom;
-            aabb.max.x += padding.right;
-            aabb.max.y += padding.top;
-
-            const size = aabb.getSize(new THREE.Vector3());
-            const center = aabb.getCenter(new THREE.Vector3());
-
-            const width = camera.right - camera.left;
-            const height = camera.top - camera.bottom;
-            const zoom = Math.min(width / size.x, height / size.y);    
-            cameraControlsRef.current.moveTo(center.x, center.y, center.z, true);
-            cameraControlsRef.current.zoom(zoom, true);
-            cameraControlsRef.current.setFocalOffset(0, 0, 0, true);
-
-            // helper for vizualization 
-            // if (boundingBoxRef.current) {
-            //     scene.remove(boundingBoxRef.current);
-            //     boundingBoxRef.current = null;
-            // } // DEBUG
-            // boundingBoxRef.current = new THREE.Box3Helper(aabb, 0xff0000); // DEBUG
-            // scene.add(boundingBoxRef.current); // DEBUG
+        switch (cameraState) {
+            case 'default': {
+                const defaultPos = { x: -60, y: 60, z: 60, zoom: 6 };
+                cameraControlsRef.current.setLookAt(defaultPos.x, defaultPos.y, defaultPos.z, 0, 0, 0, true);
+                cameraControlsRef.current.zoomTo(defaultPos.zoom, true);
+                cameraControlsRef.current.setFocalOffset(0, 0, 0, true);
+                break;
+            }
+            case 'desktopMonitor': {
+                const camera = cameraControlsRef.current._camera;
+                const { x, y, z } = camera.position;
+                const r = Math.sqrt(x * x + y * y + z * z);
+                
+                const theta = Math.atan2(z, x);
+                const phi = Math.asin(y / r)
+                const targetTheta = Math.PI /2;
+                const targetPhi = 0;
+    
+                const shortestAngularDistance = (current, target) => {
+                    let delta = ((current - target + Math.PI) % (2 * Math.PI)) - Math.PI;
+                    return delta;
+                };
+                const deltaTheta = shortestAngularDistance(theta, targetTheta);
+                const deltaPhi = shortestAngularDistance(phi, targetPhi);
+    
+                cameraControlsRef.current.rotate(deltaTheta, deltaPhi, true);
+    
+                // =========================================================================== //
+                // compute bounding box
+                const aabb = new THREE.Box3().setFromObject(monitorMesh);
+                aabb.expandByScalar(1);
+                
+                const padding = { left: 0, right: 0, bottom: 5, top: 1 };
+                aabb.min.x -= padding.left;
+                aabb.min.y -= padding.bottom;
+                aabb.max.x += padding.right;
+                aabb.max.y += padding.top;
+    
+                const size = aabb.getSize(new THREE.Vector3());
+                const center = aabb.getCenter(new THREE.Vector3());
+    
+                const width = camera.right - camera.left;
+                const height = camera.top - camera.bottom;
+                const zoom = Math.min(width / size.x, height / size.y);    
+                cameraControlsRef.current.moveTo(center.x, center.y, center.z, true);
+                cameraControlsRef.current.zoom(zoom, true);
+                cameraControlsRef.current.setFocalOffset(0, 0, 0, true);
+    
+                // helper for vizualization 
+                // if (boundingBoxRef.current) {
+                //     scene.remove(boundingBoxRef.current);
+                //     boundingBoxRef.current = null;
+                // } // DEBUG
+                // boundingBoxRef.current = new THREE.Box3Helper(aabb, 0xff0000); // DEBUG
+                // scene.add(boundingBoxRef.current); // DEBUG
+                break;
+            }
+            default: {
+                console.log('unknown camera state:', cameraState);
+                break;
+            }
         }
     }, [cameraState]);
 
-    // DEBUG
-    // useEffect(() => {
-    //     if (monitorMesh) {
-    //         console.log("monitor mesh: ", monitorMesh);
-    //     }
-    // }, [monitorMesh]);
 
     return (
         <CameraControls
