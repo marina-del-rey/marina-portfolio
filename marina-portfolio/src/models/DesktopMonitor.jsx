@@ -4,6 +4,7 @@
 import { memo, useState, useEffect } from 'react';
 import { Select } from '@react-three/postprocessing';
 import { useCameraStateStore } from '../camera/CameraStateStore';
+import DesktopiFrame from '../iframes/DesktopiFrame';
 
 const DesktopMonitor = memo(({ node }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -20,6 +21,9 @@ const DesktopMonitor = memo(({ node }) => {
     const defaultState = useCameraStateStore((state) => state.default);
     const desktopMonitorState = useCameraStateStore((state) => state.desktopMonitor);
 
+    // console.log(node.position);
+    // console.log(cameraState);
+    
     return (
         <>
             <mesh
@@ -36,7 +40,8 @@ const DesktopMonitor = memo(({ node }) => {
                     : undefined
                 }
             >
-                <meshStandardMaterial color={"#ffffff"} />  
+                <DesktopiFrame />            
+                <meshStandardMaterial color={"#000000"} />  
             </mesh>
         </>
     );

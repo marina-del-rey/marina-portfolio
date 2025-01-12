@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Perf } from 'r3f-perf';
-import { useControls } from 'leva'
 import CameraManager from "./camera/CameraManager.jsx";
 import RoomModel from './models/RoomModel.jsx';
 
