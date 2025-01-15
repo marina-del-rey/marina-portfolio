@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 desktop.appendChild(browserWindow);
 
                 browserWindow.style.position = "absolute";
-                browserWindow.style.top = "30px";
+                browserWindow.style.top = "10px";
                 browserWindow.style.left = "100px";
                 makeDraggable(browserWindow);
                 addBrowserTaskToTaskbar();

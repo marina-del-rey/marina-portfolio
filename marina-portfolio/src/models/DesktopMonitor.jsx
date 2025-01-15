@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { memo, useState, useEffect } from 'react';
+import { memo, useState, useEffect, useCallback } from 'react';
 import { Select } from '@react-three/postprocessing';
 import { useCameraStateStore } from '../camera/CameraStateStore';
 import DesktopiFrame from '../iframes/DesktopiFrame';
@@ -23,9 +23,18 @@ const DesktopMonitor = memo(({ node }) => {
 
     // console.log(node.position);
     // console.log(cameraState);
+    // Change cursor style based on hover state
+    useEffect(() => {
+        document.body.style.cursor = isHovered ? 'pointer' : 'auto';
+    }, [isHovered]);
+
+    // Callbacks for hover events
+    const onPointerOver = useCallback(() => setIsHovered(true), []);
+    const onPointerOut = useCallback(() => setIsHovered(false), []);
     
     return (
         <>
+            <Select enabled={isMonitorHovered}>
             <mesh
                 geometry={node.geometry}  
                 position={node.position}
@@ -39,10 +48,27 @@ const DesktopMonitor = memo(({ node }) => {
                     }
                     : undefined
                 }
+                onPointerOver={
+                    cameraState === 'default'
+                        ? () => {
+                              onPointerOver();
+                              setIsMonitorHovered(true);
+                          }
+                        : undefined
+                }
+                onPointerOut={
+                    cameraState === 'default'
+                        ? () => {
+                              onPointerOut();
+                              setIsMonitorHovered(false);
+                          }
+                        : undefined
+                }
             >
                 <DesktopiFrame />            
                 <meshStandardMaterial color={"#000000"} />  
             </mesh>
+            </Select>
         </>
     );
 });

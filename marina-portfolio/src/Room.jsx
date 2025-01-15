@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Perf } from 'r3f-perf';
+import { Bloom, EffectComposer, Outline, Selection } from '@react-three/postprocessing';
 import CameraManager from "./camera/CameraManager.jsx";
 import RoomModel from './models/RoomModel.jsx';
 
@@ -16,12 +17,22 @@ const Room = () => {
             orthographic 
             camera={{ position: [-60, 60, 60], zoom: 6 }} 
         >
-            {/* <Perf /> */}
             <ambientLight intensity={3.5} />
             <OrbitControls />
             <Suspense fallback={null}>
-                <RoomModel />
-                <CameraManager />
+                <Selection>
+                    <EffectComposer autoClear={false}>
+                        <Outline
+                            blur
+                            visibleEdgeColor="white"
+                            hiddenEdgeColor="grey"
+                            edgeStrength={2.5}
+                        />
+                    </EffectComposer>
+                    <RoomModel />
+                    <CameraManager />
+                </Selection>
+                {/* <Perf /> */}
             </Suspense>
         </Canvas>
     );

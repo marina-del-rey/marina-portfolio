@@ -6,19 +6,19 @@ import { useCameraStateStore } from '../camera/CameraStateStore';
 import DesktopMonitor from './DesktopMonitor';
 
 const RoomModel = memo(() => {
-  const { nodes } = useGLTF('models/room-test2.glb');
-  // console.log(nodes); // DEBUG
+  const { nodes } = useGLTF('models/room_final_Export.glb');
+  console.log(nodes); // DEBUG
 
   // textures
-  const roomTexture = useTexture('textures/RoomBake.jpg');
+  const roomTexture = useTexture('textures/RoomBake.png');
   roomTexture.flipY = false;
-  const floorTexture = useTexture('textures/FloorBake.jpg');
+  const floorTexture = useTexture('textures/FloorBake.png');
   floorTexture.flipY = false;
-  const deskTexture = useTexture('textures/DeskBake.jpg');
+  const deskTexture = useTexture('textures/DeskBake.png');
   deskTexture.flipY = false;
-  const wallDecorTexture = useTexture('textures/WallBake.jpg');
+  const wallDecorTexture = useTexture('textures/WallBake.png');
   wallDecorTexture.flipY = false;
-  const shelfTexture = useTexture('textures/ShelfBake.jpg');
+  const shelfTexture = useTexture('textures/ShelfBake.png');
   shelfTexture.flipY = false;
 
   // local ref for the floor material
@@ -45,7 +45,6 @@ const RoomModel = memo(() => {
           geometry={nodes.room.geometry}  
           position={nodes.room.position}
           rotation={nodes.room.rotation}
-          scale={10}
         >
           <meshStandardMaterial map={roomTexture} />  
         </mesh>
@@ -53,7 +52,6 @@ const RoomModel = memo(() => {
           geometry={nodes.floor.geometry}  
           position={nodes.floor.position}
           rotation={nodes.floor.rotation}
-          scale={10}
         >
           <meshStandardMaterial 
             ref={materialRef}
@@ -66,7 +64,6 @@ const RoomModel = memo(() => {
           geometry={nodes.desk.geometry}  
           position={nodes.desk.position}
           rotation={nodes.desk.rotation}
-          scale={5}
         >
           <meshStandardMaterial map={deskTexture} />  
         </mesh>
@@ -74,7 +71,6 @@ const RoomModel = memo(() => {
           geometry={nodes.walldecor.geometry}  
           position={nodes.walldecor.position}
           rotation={nodes.walldecor.rotation}
-          scale={10}
         >
           <meshStandardMaterial map={wallDecorTexture} />  
         </mesh>
@@ -82,7 +78,6 @@ const RoomModel = memo(() => {
           geometry={nodes.shelf.geometry}  
           position={nodes.shelf.position}
           rotation={nodes.shelf.rotation}
-          scale={4.5}
         >
           <meshStandardMaterial map={shelfTexture} />  
         </mesh>
@@ -92,9 +87,9 @@ const RoomModel = memo(() => {
 });
 
 export default RoomModel;
-useGLTF.preload('models/room-test2.glb');
-useTexture.preload('textures/RoomBake.jpg')
-useTexture.preload('textures/FloorBake.jpg');
-useTexture.preload('textures/DeskBake.jpg');
-useTexture.preload('textures/WallBake.jpg');
-useTexture.preload('textures/ShelfBake.jpg');
+useGLTF.preload('models/room_final_Export.glb');
+useTexture.preload('textures/RoomBake.png')
+useTexture.preload('textures/FloorBake.png');
+useTexture.preload('textures/DeskBake.png');
+useTexture.preload('textures/WallBake.png');
+useTexture.preload('textures/ShelfBake.png');
