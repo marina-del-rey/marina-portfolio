@@ -7,7 +7,6 @@ import DesktopMonitor from './DesktopMonitor';
 
 const RoomModel = memo(() => {
   const { nodes } = useGLTF('models/room_final_Export.glb');
-  console.log(nodes); // DEBUG
 
   // textures
   const roomTexture = useTexture('textures/RoomBake.png');

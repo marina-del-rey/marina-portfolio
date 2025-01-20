@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client'
-import Room from './Room.jsx'
+import App from './App.jsx'
 import './style.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <Room />
+    <App />
 )
