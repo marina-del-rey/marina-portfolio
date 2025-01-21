@@ -34,48 +34,48 @@ const DesktopMonitor = memo(({ node }) => {
     const onPointerOut = useCallback(() => setIsHovered(false), []);
     
     // video texture
-    const desktopWallpaper = useTexture('textures/Presentation.gif');
+    // const desktopWallpaper = useTexture('textures/Presentation.gif');
 
     return (
         <>
             <Select enabled={isMonitorHovered}>
-            <mesh
-                geometry={node.geometry}  
-                position={node.position}
-                rotation={node.rotation}
-                scale={[-7.61, -4.783, -0.077]}
-                onClick={
-                    cameraState === 'default'
-                    ? () => {
-                        desktopMonitorState();
-                        setIsMonitorHovered(false);
-                    }
-                    : undefined
-                }
-                onPointerOver={
-                    cameraState === 'default'
+                <mesh
+                    geometry={node.geometry}  
+                    position={node.position}
+                    rotation={node.rotation}
+                    scale={[-7.61, -4.783, -0.077]}
+                    onClick={
+                        cameraState === 'default'
                         ? () => {
-                            onPointerOver();
-                            setIsMonitorHovered(true);
-                          }
-                        : undefined
-                }
-                onPointerOut={
-                    cameraState === 'default'
-                        ? () => {
-                            onPointerOut();
+                            desktopMonitorState();
                             setIsMonitorHovered(false);
-                          }
+                        }
                         : undefined
-                }
-            >
-                <DesktopiFrame />            
-                <meshStandardMaterial color={"#000000"} />  
-                {/* <meshBasicMaterial
-                    map={desktopWallpaper}
-                    toneMapped={false}
-                /> */}
-            </mesh>
+                    }
+                    onPointerOver={
+                        cameraState === 'default'
+                            ? () => {
+                                onPointerOver();
+                                setIsMonitorHovered(true);
+                            }
+                            : undefined
+                    }
+                    onPointerOut={
+                        cameraState === 'default'
+                            ? () => {
+                                onPointerOut();
+                                setIsMonitorHovered(false);
+                            }
+                            : undefined
+                    }
+                >
+                    <DesktopiFrame />            
+                    <meshStandardMaterial color={"#000000"} />  
+                    {/* <meshBasicMaterial
+                        map={desktopWallpaper}
+                        toneMapped={false}
+                    /> */}
+                </mesh>
             </Select>
         </>
     );

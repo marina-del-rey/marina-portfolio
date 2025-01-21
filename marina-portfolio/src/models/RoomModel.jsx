@@ -6,7 +6,7 @@ import { useCameraStateStore } from '../camera/CameraStateStore';
 import DesktopMonitor from './DesktopMonitor';
 
 const RoomModel = memo(() => {
-  const { nodes } = useGLTF('models/room_final_Export.glb');
+  const { nodes } = useGLTF('models/room_final_Export-v1.glb');
 
   // textures
   const roomTexture = useTexture('textures/RoomBake.png');
@@ -45,7 +45,7 @@ const RoomModel = memo(() => {
           position={nodes.room.position}
           rotation={nodes.room.rotation}
         >
-          <meshStandardMaterial map={roomTexture} />  
+          <meshStandardMaterial map={roomTexture} mipmaps />  
         </mesh>
         <mesh
           geometry={nodes.floor.geometry}  
@@ -57,6 +57,7 @@ const RoomModel = memo(() => {
             map={floorTexture} 
             transparent={true}
             opacity={1}
+            mipmaps
           />  
         </mesh>
         <mesh
@@ -64,31 +65,31 @@ const RoomModel = memo(() => {
           position={nodes.desk.position}
           rotation={nodes.desk.rotation}
         >
-          <meshStandardMaterial map={deskTexture} />  
+          <meshStandardMaterial map={deskTexture} mipmaps />  
         </mesh>
         <mesh
           geometry={nodes.walldecor.geometry}  
           position={nodes.walldecor.position}
           rotation={nodes.walldecor.rotation}
         >
-          <meshStandardMaterial map={wallDecorTexture} />  
+          <meshStandardMaterial map={wallDecorTexture} mipmaps />  
         </mesh>
         <mesh
           geometry={nodes.shelf.geometry}  
           position={nodes.shelf.position}
           rotation={nodes.shelf.rotation}
         >
-          <meshStandardMaterial map={shelfTexture} />  
+          <meshStandardMaterial map={shelfTexture} mipmaps />  
         </mesh>
         <DesktopMonitor node={nodes.desktopscreen} />
     </group>
   )
 });
 
-export default RoomModel;
-useGLTF.preload('models/room_final_Export.glb');
+useGLTF.preload('models/room_final_Export-v1.glb');
 useTexture.preload('textures/RoomBake.png')
 useTexture.preload('textures/FloorBake.png');
 useTexture.preload('textures/DeskBake.png');
 useTexture.preload('textures/WallBake.png');
 useTexture.preload('textures/ShelfBake.png');
+export default RoomModel;
