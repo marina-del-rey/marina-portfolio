@@ -7,11 +7,25 @@ export default {
   theme: {
     extend: {
       height: {
-        '135vh': '135vh',
+        '138vh': '138vh',
       },
       fontFamily: {
         nunito: ['"Nunito", serif'],
+      },
+      keyframes: {
+        spin: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
+        },
+      },
+      animation: {
+        spin: 'spin 1s ease-in-out forwards',
       }
+    },
+  },
+  variants: {
+    extend: {
+      animation: ['hover', 'focus', 'group-hover'],
     },
   },
   plugins: [],

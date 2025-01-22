@@ -62,7 +62,7 @@ const CameraManager = () => {
                 const aabb = new THREE.Box3().setFromObject(monitorMesh);
                 aabb.expandByScalar(1);
                 
-                const padding = { left: 0, right: 0, bottom: 5, top: 1 };
+                const padding = { left: 0, right: 0, bottom: 5.5, top: 1 };
                 aabb.min.x -= padding.left;
                 aabb.min.y -= padding.bottom;
                 aabb.max.x += padding.right;

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
-import keppyLoading from "../assets/images/keppy-enter.png";
-import keppyLoaded from "../assets/images/keppy-loading.png";
+import finishedLoadingImg from "../assets/images/keppy-loading.png";
 
 const LoadingScreen = (props) => {
     const { started, setStarted } = props;
@@ -39,12 +38,12 @@ const LoadingScreen = (props) => {
             {showButton && (
               <>
                 <div
-                    className={`flex flex-col items-center transition-opacity duration-1000 mt-[-110px] ${
+                    className={`flex flex-col items-center transition-opacity duration-1000 mt-[-150px] ${
                       fadeIn ? "opacity-100" : "opacity-0"
                     }`}
                 >                  
                   <img
-                    src={keppyLoaded}
+                    src={finishedLoadingImg}
                     alt="keppy-loaded"
                     className="select-none mr-2 scale-[0.8] block"
                   />

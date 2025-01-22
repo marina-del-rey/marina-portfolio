@@ -39,7 +39,7 @@ const Overlay = () => {
                             exit="hidden"
                             variants={containerVariants}
                         >
-                            <div className="absolute left-[72.5px] top-[85%] transform -translate-y-1/2 p-2">
+                            <div className="absolute left-[55px] top-[85%] transform -translate-y-1/2 p-2">
                                 <h1 className="text-7xl font-extrabold m-0 leading-snug font-nunito">
                                     Marina
                                 </h1>
