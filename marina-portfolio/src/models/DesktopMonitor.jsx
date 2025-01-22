@@ -19,7 +19,6 @@ const DesktopMonitor = memo(({ node }) => {
 
     // camera states
     const cameraState = useCameraStateStore((state) => state.cameraState);
-    const defaultState = useCameraStateStore((state) => state.default);
     const desktopMonitorState = useCameraStateStore((state) => state.desktopMonitor);
 
     // console.log(node.position);

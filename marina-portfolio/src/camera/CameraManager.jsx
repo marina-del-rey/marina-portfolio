@@ -8,8 +8,8 @@ import * as THREE from 'three';
 
 const CameraManager = () => {
     const cameraControlsRef = useRef();
-    const boundingBoxRef = useRef();
-    const { scene } = useThree();
+    // const boundingBoxRef = useRef();
+    // const { scene } = useThree();
 
     // variables for state management 
     const cameraState = useCameraStateStore((state) => state.cameraState);
@@ -85,6 +85,13 @@ const CameraManager = () => {
                 // } // DEBUG
                 // boundingBoxRef.current = new THREE.Box3Helper(aabb, 0xff0000); // DEBUG
                 // scene.add(boundingBoxRef.current); // DEBUG
+                break;
+            }
+            case 'reset': {
+                const defaultPos = { x: -60, y: 60, z: 60, zoom: 6 };
+                cameraControlsRef.current.setLookAt(defaultPos.x, defaultPos.y, defaultPos.z, 0, 0, 0, true);
+                cameraControlsRef.current.zoomTo(defaultPos.zoom, true);
+                cameraControlsRef.current.setFocalOffset(0, 0, 0, true);
                 break;
             }
             default: {

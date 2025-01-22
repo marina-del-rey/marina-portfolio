@@ -31,4 +31,18 @@ export const useCameraStateStore = create((set) => ({
             zoomedIn: (state.zoomedIn = true) // set zoomed-in state
         }));
     },
+
+    // function to reset camera position to default state
+    resetCameraState: () => {
+        set((state) => ({
+            cameraState: (state.cameraState = 'reset'),
+            zoomedIn: (state.zoomedIn = false) // reset zoom state 
+        }));
+        setTimeout(() => {
+            set((state) => ({
+                cameraState: (state.cameraState = 'default'),
+                zoomedIn: (state.zoomedIn = false) // reset zoom state 
+            }));
+        }, 50);
+    },
 }));
