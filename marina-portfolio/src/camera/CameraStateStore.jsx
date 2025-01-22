@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { gsap } from 'gsap';
 
 export const useCameraStateStore = create((set) => ({
     cameraState: 'default', 
@@ -28,7 +29,7 @@ export const useCameraStateStore = create((set) => ({
     desktopMonitor: () => {
         set((state) => ({
             cameraState: (state.cameraState = 'desktopMonitor'),
-            zoomedIn: (state.zoomedIn = true) // set zoomed-in state
+            zoomedIn: (state.zoomedIn = true), // set zoomed-in state
         }));
     },
 
@@ -38,11 +39,8 @@ export const useCameraStateStore = create((set) => ({
             cameraState: (state.cameraState = 'reset'),
             zoomedIn: (state.zoomedIn = false) // reset zoom state 
         }));
-        setTimeout(() => {
-            set((state) => ({
-                cameraState: (state.cameraState = 'default'),
-                zoomedIn: (state.zoomedIn = false) // reset zoom state 
-            }));
-        }, 50);
+        gsap.delayedCall(0.05, () => {
+            set({ cameraState: 'default', zoomedIn: false });
+        });
     },
 }));

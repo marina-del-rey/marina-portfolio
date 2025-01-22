@@ -17,6 +17,8 @@ const CameraManager = () => {
     const floorMaterialRef = useCameraStateStore((state) => state.floorMaterialRef);
     const zoomedIn = useCameraStateStore((state) => state.zoomedIn);
     const enable = useCameraStateStore((state) => state.enable);
+    const minZoom = useCameraStateStore((state) => state.minZoom);
+    const maxZoom = useCameraStateStore ((state) => state.maxZoom);
 
     // animate opacity of floor material (where chair is located)
     useEffect(() => {
@@ -33,6 +35,10 @@ const CameraManager = () => {
         switch (cameraState) {
             case 'default': {
                 const defaultPos = { x: -60, y: 60, z: 60, zoom: 6 };
+
+                cameraControlsRef.current.minZoom = 5;
+                cameraControlsRef.current.maxZoom = 12;
+
                 cameraControlsRef.current.setLookAt(defaultPos.x, defaultPos.y, defaultPos.z, 0, 0, 0, true);
                 cameraControlsRef.current.zoomTo(defaultPos.zoom, true);
                 cameraControlsRef.current.setFocalOffset(0, 0, 0, true);
@@ -56,7 +62,6 @@ const CameraManager = () => {
                 const deltaPhi = shortestAngularDistance(phi, targetPhi);
     
                 cameraControlsRef.current.rotate(deltaTheta, deltaPhi, true);
-    
                 // =========================================================================== //
                 // compute bounding box
                 const aabb = new THREE.Box3().setFromObject(monitorMesh);
@@ -73,11 +78,15 @@ const CameraManager = () => {
     
                 const width = camera.right - camera.left;
                 const height = camera.top - camera.bottom;
-                const zoom = Math.min(width / size.x, height / size.y);    
+                const zoom = Math.min(width / size.x, height / size.y);   
+
+                cameraControlsRef.current.minZoom = 30;
+                cameraControlsRef.current.maxZoom = Infinity;
+
                 cameraControlsRef.current.moveTo(center.x, center.y, center.z, true);
                 cameraControlsRef.current.zoom(zoom, true);
                 cameraControlsRef.current.setFocalOffset(0, 0, 0, true);
-    
+                
                 // helper for vizualization 
                 // if (boundingBoxRef.current) {
                 //     scene.remove(boundingBoxRef.current);
@@ -89,6 +98,9 @@ const CameraManager = () => {
             }
             case 'reset': {
                 const defaultPos = { x: -60, y: 60, z: 60, zoom: 6 };
+
+                cameraControlsRef.current.minZoom = 5;
+                cameraControlsRef.current.maxZoom = 12;
                 cameraControlsRef.current.setLookAt(defaultPos.x, defaultPos.y, defaultPos.z, 0, 0, 0, true);
                 cameraControlsRef.current.zoomTo(defaultPos.zoom, true);
                 cameraControlsRef.current.setFocalOffset(0, 0, 0, true);
@@ -107,6 +119,16 @@ const CameraManager = () => {
             ref={cameraControlsRef}
             makeDefault={true}
             enabled={enable}
+            mouseButtons={{
+                left: 1,
+                middle: 0,
+                right: 0,
+                wheel: 16
+            }}
+            touches={{
+                one: 32,
+                two: 512
+            }}
         />
     )
 };
