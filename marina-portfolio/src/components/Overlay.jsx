@@ -21,7 +21,7 @@ const Overlay = () => {
         visible: { 
             opacity: 1, 
             x: 0,  
-            transition: { duration: 0.75 }
+            transition: { duration: 1 }
         }
     };
 
@@ -39,7 +39,7 @@ const Overlay = () => {
                             exit="hidden"
                             variants={containerVariants}
                         >
-                            <div className="absolute left-[55px] top-[85%] transform -translate-y-1/2 p-2">
+                            <div className="absolute left-[25px] top-[85%] transform -translate-y-1/2 p-2">
                                 <h1 className="text-7xl font-extrabold m-0 leading-snug font-nunito">
                                     Marina
                                 </h1>
