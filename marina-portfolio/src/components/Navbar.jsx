@@ -32,7 +32,7 @@ const Navbar = () => {
                     className="w-[78px] h-[66px] hover:drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]
                         hover:scale-x-[-1] transition-transform duration-500 pointer-events-auto" 
                 />
-                <nav className="flex text-lg gap-4 mt-6 mr-2 font-medium">
+                <nav className="flex text-lg gap-4 mt-10 lg:mt-7 mr-2 font-medium">
                     {/* reset camera button */}
                     <button
                         className="mt-[-40px] font-nunito bg-indigo-900 text-white text-lg font-bold py-1 px-3 rounded-xl pointer-events-auto

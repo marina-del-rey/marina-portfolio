@@ -39,14 +39,14 @@ const Overlay = () => {
                             exit="hidden"
                             variants={containerVariants}
                         >
-                            <div className="absolute left-[25px] top-[85%] transform -translate-y-1/2 p-2">
-                                <h1 className="text-7xl font-extrabold m-0 leading-snug font-nunito">
+                            <div className="absolute left-[4px] lg:left-[17px] xl:left-[25px] top-[91%] md:top-[90%] xl:top-[88%] transform -translate-y-1/2 p-2">
+                                <h1 className="text-5xl md:text-6xl xl:text-7xl font-extrabold m-0 leading-snug font-nunito">
                                     Marina
                                 </h1>
-                                <h1 className="text-7xl ml-1 font-extrabold -mt-6 leading-snug font-nunito">
+                                <h1 className="text-5xl md:text-6xl xl:text-7xl ml-1 font-extrabold -mt-4 md:mt-1 xl:m-0 leading-snug font-nunito">
                                     V. Novaes
                                 </h1>
-                                <p className="text-lg ml-2 -mt-4 text-gray-600 font-nunito">
+                                <p className="text-sm lg:text-md xl:text-lg ml-2 -mt-1 md:mt-1 xl:m-0 text-gray-600 font-nunito">
                                     Web Developer | Lisbon, Portugal
                                 </p>
                             </div>
