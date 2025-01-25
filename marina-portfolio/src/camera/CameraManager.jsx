@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useThree } from '@react-three/fiber';
 import { CameraControls } from '@react-three/drei';
 import { useCameraStateStore } from './CameraStateStore';
@@ -20,6 +20,47 @@ const CameraManager = () => {
     const minZoom = useCameraStateStore((state) => state.minZoom);
     const maxZoom = useCameraStateStore ((state) => state.maxZoom);
 
+    const [screenSize, setScreenSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+
+    // handle window resize
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // get zoom settings based on screen size
+    const getZoomSettings = () => {
+        if (screenSize.width <= 320) {
+            return { minZoom: 1, maxZoom: 4, zoom: 2 }; // mobile S
+        } else if (screenSize.width <= 375) {
+            return { minZoom: 1.5, maxZoom: 5, zoom: 2.5 }; // mobile M
+        } else if (screenSize.width <= 425) {
+            return { minZoom: 2, maxZoom: 6, zoom: 3 }; // mobile L
+        } else if (screenSize.width <= 768) {
+            return { minZoom: 3, maxZoom: 7, zoom: 5 }; // tablet
+        } else {
+            return { minZoom: 5, maxZoom: 12, zoom: 6 }; // default
+        }
+    };
+
+    // apply zoom settings
+    useEffect(() => {
+        if (cameraControlsRef.current) {
+            const { minZoom, maxZoom } = getZoomSettings();
+            cameraControlsRef.current.minZoom = minZoom;
+            cameraControlsRef.current.maxZoom = maxZoom;
+        }
+    }, [screenSize, zoomedIn]);
+
     // animate opacity of floor material (where chair is located)
     useEffect(() => {
         if (floorMaterialRef) {
@@ -34,13 +75,15 @@ const CameraManager = () => {
     useEffect(() => {
         switch (cameraState) {
             case 'default': {
-                const defaultPos = { x: -60, y: 60, z: 60, zoom: 6 };
-
-                cameraControlsRef.current.minZoom = 5;
-                cameraControlsRef.current.maxZoom = 12;
+                const { zoom } = getZoomSettings();
+                const defaultPos = {
+                    x: screenSize.width < 768 ? -40 : -60, 
+                    y: screenSize.width < 768 ? 40 : 60, 
+                    z: screenSize.width < 768 ? 40 : 60, 
+                };
 
                 cameraControlsRef.current.setLookAt(defaultPos.x, defaultPos.y, defaultPos.z, 0, 0, 0, true);
-                cameraControlsRef.current.zoomTo(defaultPos.zoom, true);
+                cameraControlsRef.current.zoomTo(zoom, true);
                 cameraControlsRef.current.setFocalOffset(0, 0, 0, true);
                 break;
             }
@@ -80,7 +123,7 @@ const CameraManager = () => {
                 const height = camera.top - camera.bottom;
                 const zoom = Math.min(width / size.x, height / size.y);   
 
-                cameraControlsRef.current.minZoom = 30;
+                cameraControlsRef.current.minZoom = screenSize.width < 768 ? 20 : 30; 
                 cameraControlsRef.current.maxZoom = Infinity;
 
                 cameraControlsRef.current.moveTo(center.x, center.y, center.z, true);
@@ -97,12 +140,15 @@ const CameraManager = () => {
                 break;
             }
             case 'reset': {
-                const defaultPos = { x: -60, y: 60, z: 60, zoom: 6 };
+                const { zoom } = getZoomSettings();
+                const defaultPos = {
+                    x: screenSize.width < 768 ? -40 : -60, 
+                    y: screenSize.width < 768 ? 40 : 60, 
+                    z: screenSize.width < 768 ? 40 : 60, 
+                };
 
-                cameraControlsRef.current.minZoom = 5;
-                cameraControlsRef.current.maxZoom = 12;
                 cameraControlsRef.current.setLookAt(defaultPos.x, defaultPos.y, defaultPos.z, 0, 0, 0, true);
-                cameraControlsRef.current.zoomTo(defaultPos.zoom, true);
+                cameraControlsRef.current.zoomTo(zoom, true);
                 cameraControlsRef.current.setFocalOffset(0, 0, 0, true);
                 break;
             }
@@ -112,7 +158,6 @@ const CameraManager = () => {
             }
         }
     }, [cameraState]);
-
 
     return (
         <CameraControls
