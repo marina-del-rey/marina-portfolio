@@ -33,7 +33,7 @@ const DesktopMonitor = memo(({ node }) => {
     const onPointerOut = useCallback(() => setIsHovered(false), []);
     
     // video texture
-    const desktopWallpaper = useTexture('wallpaper.jpg');
+    // const desktopWallpaper = useTexture('wallpaper.jpg');
 
     return (
         <>
@@ -70,10 +70,10 @@ const DesktopMonitor = memo(({ node }) => {
                 >
                     <DesktopiFrame />            
                     <meshStandardMaterial color={"#000000"} />  
-                    <meshBasicMaterial
+                    {/* <meshBasicMaterial
                         map={desktopWallpaper}
                         toneMapped={false}
-                    />
+                    /> */}
                 </mesh>
             </Select>
         </>

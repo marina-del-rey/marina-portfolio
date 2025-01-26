@@ -105,6 +105,15 @@ section.active {
   align-items: center;
 }
 
+/* About me section styling */
+.about-me-container .text {
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  text-indent: 30px;
+  text-align: justify;
+}
+
 /* Projects section styling */
 .projects-container {
   display: flex;
@@ -153,7 +162,7 @@ section.active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 .contact-container .title {
